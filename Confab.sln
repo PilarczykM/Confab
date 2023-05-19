@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8CEEDF5F-CDA3-49C0-97C7-C17C600E6AB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrapper", "Bootstrapper", "{BC5DE6C6-88EB-49B7-8E7D-3FC39690BEEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Bootstrapper", "src\Bootstrapper\Confab.Bootstrapper\Confab.Bootstrapper.csproj", "{74C409FF-19B7-4562-BD57-E8E802EE6977}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74C409FF-19B7-4562-BD57-E8E802EE6977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C409FF-19B7-4562-BD57-E8E802EE6977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C409FF-19B7-4562-BD57-E8E802EE6977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C409FF-19B7-4562-BD57-E8E802EE6977}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC5DE6C6-88EB-49B7-8E7D-3FC39690BEEC} = {8CEEDF5F-CDA3-49C0-97C7-C17C600E6AB4}
+		{74C409FF-19B7-4562-BD57-E8E802EE6977} = {BC5DE6C6-88EB-49B7-8E7D-3FC39690BEEC}
+	EndGlobalSection
+EndGlobal

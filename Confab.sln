@@ -9,6 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrapper", "Bootstrappe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Bootstrapper", "src\Bootstrapper\Confab.Bootstrapper\Confab.Bootstrapper.csproj", "{74C409FF-19B7-4562-BD57-E8E802EE6977}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{870A0266-3AC6-4392-8F35-E84514D8EFF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Shared.Abstractions", "src\Shared\Confab.Shared.Abstractions\Confab.Shared.Abstractions.csproj", "{EA2D5158-D93E-4B15-9D16-9B49CAD65F55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confab.Shared.Infrastructure", "src\Shared\Confab.Shared.Infrastructure\Confab.Shared.Infrastructure.csproj", "{2BA769D5-292D-4090-8898-EF16B47CED42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +28,20 @@ Global
 		{74C409FF-19B7-4562-BD57-E8E802EE6977}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C409FF-19B7-4562-BD57-E8E802EE6977}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C409FF-19B7-4562-BD57-E8E802EE6977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA2D5158-D93E-4B15-9D16-9B49CAD65F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2D5158-D93E-4B15-9D16-9B49CAD65F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2D5158-D93E-4B15-9D16-9B49CAD65F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2D5158-D93E-4B15-9D16-9B49CAD65F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BA769D5-292D-4090-8898-EF16B47CED42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA769D5-292D-4090-8898-EF16B47CED42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BA769D5-292D-4090-8898-EF16B47CED42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BA769D5-292D-4090-8898-EF16B47CED42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BC5DE6C6-88EB-49B7-8E7D-3FC39690BEEC} = {8CEEDF5F-CDA3-49C0-97C7-C17C600E6AB4}
 		{74C409FF-19B7-4562-BD57-E8E802EE6977} = {BC5DE6C6-88EB-49B7-8E7D-3FC39690BEEC}
+		{870A0266-3AC6-4392-8F35-E84514D8EFF6} = {8CEEDF5F-CDA3-49C0-97C7-C17C600E6AB4}
+		{EA2D5158-D93E-4B15-9D16-9B49CAD65F55} = {870A0266-3AC6-4392-8F35-E84514D8EFF6}
+		{2BA769D5-292D-4090-8898-EF16B47CED42} = {870A0266-3AC6-4392-8F35-E84514D8EFF6}
 	EndGlobalSection
 EndGlobal

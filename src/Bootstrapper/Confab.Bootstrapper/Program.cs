@@ -1,6 +1,14 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+namespace Confab.Bootstrapper
+{
+    public class Program
+    {
+        public static Task Main(string[] args) => CreateHostBuilder(args).Build().RunAsync();
 
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+}

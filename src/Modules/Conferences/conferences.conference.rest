@@ -1,0 +1,37 @@
+@url = http://localhost:5000/conferences-module
+@id = b77ee26c-7f89-4edd-a47d-270b605de75f
+
+# Conferences - Conference GET ALL
+###
+Get {{url}}/conference
+
+# Conferences - Conference GET by id
+###
+Get {{url}}/conference/{{id}}
+
+# Conferences - Conference POST
+###
+POST {{url}}/conference
+Content-Type: application/json
+
+{
+    "hostname": "John Doe 2",
+    "hostid": "c2f3d720-4786-41bb-b073-f7ed451b588e",
+    "Name": "My first conference",
+    "Location": "Poland",
+    "description": "Long description"
+}
+
+# Conferences - Conference UPDATE
+###
+PUT {{url}}/conference/{{id}}
+Content-Type: application/json
+
+{
+    "Name": "John Lemon",
+    "description": "Long description"
+}
+
+# Conferences - Conference DELETE
+###
+DELETE {{url}}/conference/{{id}}

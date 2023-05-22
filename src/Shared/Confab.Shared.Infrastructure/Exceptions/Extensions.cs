@@ -24,4 +24,3 @@ namespace Confab.Shared.Infrastructure.Exceptions
         }
     }
 }
-

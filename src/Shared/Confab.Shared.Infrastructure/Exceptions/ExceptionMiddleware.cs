@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using Confab.Shared.Abstractions.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -10,7 +9,10 @@ namespace Confab.Shared.Infrastructure.Exceptions
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IExceptionCompositionRoot _exceptionCompositionRoot;
 
-        public ExceptionMiddleware(ILogger<ExceptionMiddleware> logger, IExceptionCompositionRoot exceptionCompositionRoot)
+        public ExceptionMiddleware(
+            ILogger<ExceptionMiddleware> logger,
+            IExceptionCompositionRoot exceptionCompositionRoot
+        )
         {
             _logger = logger;
             _exceptionCompositionRoot = exceptionCompositionRoot;
@@ -32,7 +34,9 @@ namespace Confab.Shared.Infrastructure.Exceptions
         private async Task HandleErrorAsync(HttpContext context, Exception exception)
         {
             var errorResponse = _exceptionCompositionRoot.Map(exception);
-            context.Response.StatusCode = (int)(errorResponse?.StatusCode ?? HttpStatusCode.InternalServerError);
+            context.Response.StatusCode = (int)(
+                errorResponse?.StatusCode ?? HttpStatusCode.InternalServerError
+            );
 
             if (errorResponse?.Response is null)
             {
@@ -43,4 +47,3 @@ namespace Confab.Shared.Infrastructure.Exceptions
         }
     }
 }
-

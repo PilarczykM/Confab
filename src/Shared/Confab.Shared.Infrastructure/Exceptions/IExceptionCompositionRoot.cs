@@ -7,4 +7,3 @@ namespace Confab.Shared.Infrastructure.Exceptions
         ExceptionResponse Map(Exception exception);
     }
 }
-

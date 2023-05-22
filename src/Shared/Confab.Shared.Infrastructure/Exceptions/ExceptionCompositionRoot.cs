@@ -5,7 +5,7 @@ namespace Confab.Shared.Infrastructure.Exceptions
 {
     internal class ExceptionCompositionRoot : IExceptionCompositionRoot
     {
-        private IServiceProvider _serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
 
         public ExceptionCompositionRoot(IServiceProvider serviceProvider)
         {
@@ -35,4 +35,3 @@ namespace Confab.Shared.Infrastructure.Exceptions
         }
     }
 }
-

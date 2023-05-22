@@ -84,7 +84,7 @@ namespace Confab.Modules.Conferences.Core.Services
 
             if (host is null)
             {
-                throw new HostNotFoundException(host.Id);
+                throw new HostNotFoundException(dto.Id);
             }
 
             host.Name = dto.Name;

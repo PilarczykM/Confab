@@ -13,9 +13,11 @@ namespace Confab.Modules.Conferences.Core
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
             services.AddSingleton<IHostRepository, InMemoryHostRepository>();
+            services.AddSingleton<IConferenceRepository, InMemoryConferenceRepository>();
             services.AddSingleton<IHostDeletionPolicy, HostDeletionPolicy>();
             services.AddSingleton<IConferenceDelitionPolicy, ConferenceDelitionPolicy>();
             services.AddScoped<IHostService, HostService>();
+            services.AddScoped<IConferenceService, ConferenceService>();
 
             return services;
         }

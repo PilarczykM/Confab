@@ -2,12 +2,12 @@
 
 namespace Confab.Modules.Conferences.Core.Exceptions
 {
-    internal class HostNotFoundException : ConfabException
+    internal class ConferenceNotFoundException : ConfabException
     {
         public Guid Id { get; }
 
-        public HostNotFoundException(Guid id)
-            : base($"Host with ID: '{id}' was not found.")
+        public ConferenceNotFoundException(Guid id)
+            : base($"Conference with ID: '{id}' was not found.")
         {
             Id = id;
         }

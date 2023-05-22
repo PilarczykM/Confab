@@ -1,10 +1,14 @@
-﻿namespace Confab.Bootstrapper
+﻿using Confab.Modules.Conferences.Api;
+using Confab.Shared.Infrastructure;
+
+namespace Confab.Bootstrapper
 {
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddInfrastructure();
+            services.AddConferences();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -14,13 +18,7 @@
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", context => context.Response.WriteAsync("Confab API!"));
-            });
+            app.UseInfrastructure();
         }
     }
 }

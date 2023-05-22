@@ -1,0 +1,19 @@
+@url = http://localhost:5000
+@conferencesApi = {{url}}/conferences-module
+@id = 00000000-0000-0000-0000-0000000000001
+
+# Home
+###
+GET {{url}}
+
+# Conferences
+###
+Get {{conferencesApi}}
+
+# Conferences - Host GET by id
+###
+Get {{conferencesApi}}/host/{{id}}
+
+# Conferences - Host GET
+###
+Get {{conferencesApi}}/host

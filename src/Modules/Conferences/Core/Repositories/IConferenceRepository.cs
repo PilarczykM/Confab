@@ -11,4 +11,3 @@ namespace Confab.Modules.Conferences.Core.Repositories
         Task DeleteAsync(Conference conference);
     }
 }
-

@@ -11,4 +11,3 @@ namespace Confab.Modules.Conferences.Core.Services
         Task DeleteAsync(Guid id);
     }
 }
-

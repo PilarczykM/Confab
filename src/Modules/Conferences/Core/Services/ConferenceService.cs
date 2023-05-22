@@ -12,12 +12,17 @@ namespace Confab.Modules.Conferences.Core.Services
         private readonly IHostRepository _hostRepository;
         private readonly IConferenceDelitionPolicy _conferenceDelitionPolicy;
 
-        public ConferenceService(IConferenceRepository conferenceRepository, IHostRepository hostRepository, IConferenceDelitionPolicy conferenceDelitionPolicy)
+        public ConferenceService(
+            IConferenceRepository conferenceRepository,
+            IHostRepository hostRepository,
+            IConferenceDelitionPolicy conferenceDelitionPolicy
+        )
         {
             _conferenceRepository = conferenceRepository;
             _hostRepository = hostRepository;
             _conferenceDelitionPolicy = conferenceDelitionPolicy;
         }
+
         public async Task AddAsync(ConferenceDetailsDto dto)
         {
             if (await _hostRepository.GetAsync(dto.HostId) is null)
@@ -26,29 +31,28 @@ namespace Confab.Modules.Conferences.Core.Services
             }
 
             dto.Id = Guid.NewGuid();
-            await _conferenceRepository.AddAsync(new()
-            {
-                Id = dto.Id,
-                HostId = dto.HostId,
-                Location = dto.Location,
-                Description = dto.Description,
-                Name = dto.Name,
-                LogoUrl = dto.LogoUrl,
-                ParticipantsLimit = dto.ParticipantsLimit,
-                From = dto.From,
-                To = dto.To
-            });
+            await _conferenceRepository.AddAsync(
+                new()
+                {
+                    Id = dto.Id,
+                    HostId = dto.HostId,
+                    Location = dto.Location,
+                    Description = dto.Description,
+                    Name = dto.Name,
+                    LogoUrl = dto.LogoUrl,
+                    ParticipantsLimit = dto.ParticipantsLimit,
+                    From = dto.From,
+                    To = dto.To
+                }
+            );
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var conference = await _conferenceRepository.GetAsync(id);
-
-            if (conference is null)
-            {
-                throw new ConferenceNotFoundException(id);
-            }
-
+            var conference =
+                await _conferenceRepository.GetAsync(id)
+                ?? throw new ConferenceNotFoundException(id);
+            
             if (await _conferenceDelitionPolicy.CanDeleteAsync(conference))
             {
                 throw new ConferenceCanNotBeDeletedException(id);
@@ -66,12 +70,9 @@ namespace Confab.Modules.Conferences.Core.Services
 
         public async Task<ConferenceDetailsDto> GetAsync(Guid id)
         {
-            var conference = await _conferenceRepository.GetAsync(id);
-
-            if (conference is null)
-            {
-                throw new ConferenceNotFoundException(id);
-            }
+            var conference =
+                await _conferenceRepository.GetAsync(id)
+                ?? throw new ConferenceNotFoundException(id);
 
             var dto = Map<ConferenceDetailsDto>(conference);
             dto.Description = conference.Description;
@@ -80,12 +81,9 @@ namespace Confab.Modules.Conferences.Core.Services
 
         public async Task UpdateAsync(ConferenceDetailsDto dto)
         {
-            var conference = await _conferenceRepository.GetAsync(dto.Id);
-
-            if (conference is null)
-            {
-                throw new ConferenceNotFoundException(dto.Id);
-            }
+            var conference =
+                await _conferenceRepository.GetAsync(dto.Id)
+                ?? throw new ConferenceNotFoundException(dto.Id);
 
             conference.Name = dto.Name;
             conference.Description = dto.Description;
@@ -114,4 +112,3 @@ namespace Confab.Modules.Conferences.Core.Services
             };
     }
 }
-

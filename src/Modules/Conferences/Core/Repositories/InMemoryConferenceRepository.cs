@@ -34,4 +34,3 @@ namespace Confab.Modules.Conferences.Core.Repositories
         }
     }
 }
-

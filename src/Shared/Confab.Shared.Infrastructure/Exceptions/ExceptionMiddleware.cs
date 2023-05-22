@@ -3,17 +3,17 @@ using Confab.Shared.Abstractions.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Confab.Shared.Infrastructure.Middlewares
+namespace Confab.Shared.Infrastructure.Exceptions
 {
     internal class ExceptionMiddleware : IMiddleware
     {
         private readonly ILogger<ExceptionMiddleware> _logger;
-        private readonly IExceptionToResponseMapper _exceptionToResponseMapper;
+        private readonly IExceptionCompositionRoot _exceptionCompositionRoot;
 
-        public ExceptionMiddleware(ILogger<ExceptionMiddleware> logger, IExceptionToResponseMapper exceptionToResponseMapper)
+        public ExceptionMiddleware(ILogger<ExceptionMiddleware> logger, IExceptionCompositionRoot exceptionCompositionRoot)
         {
             _logger = logger;
-            _exceptionToResponseMapper = exceptionToResponseMapper;
+            _exceptionCompositionRoot = exceptionCompositionRoot;
         }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
@@ -31,7 +31,7 @@ namespace Confab.Shared.Infrastructure.Middlewares
 
         private async Task HandleErrorAsync(HttpContext context, Exception exception)
         {
-            var errorResponse = _exceptionToResponseMapper.Map(exception);
+            var errorResponse = _exceptionCompositionRoot.Map(exception);
             context.Response.StatusCode = (int)(errorResponse?.StatusCode ?? HttpStatusCode.InternalServerError);
 
             if (errorResponse?.Response is null)

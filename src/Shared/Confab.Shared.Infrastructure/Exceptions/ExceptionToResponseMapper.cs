@@ -3,7 +3,7 @@ using System.Net;
 using Confab.Shared.Abstractions.Exceptions;
 using Humanizer;
 
-namespace Confab.Shared.Infrastructure.Middlewares
+namespace Confab.Shared.Infrastructure.Exceptions
 {
     internal class ExceptionToResponseMapper : IExceptionToResponseMapper
     {

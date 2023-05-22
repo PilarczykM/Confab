@@ -14,22 +14,22 @@ namespace Confab.Modules.Conferences.Api.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult<ConferenceDetailsDto>> GetAsync(Guid id) =>
+        public async Task<ActionResult<ConferenceDetailsDto>> Get(Guid id) =>
             OkOrNotFound(await _conferenceService.GetAsync(id));
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ConferenceDto>>> GetAllAsync() =>
+        public async Task<ActionResult<IReadOnlyList<ConferenceDto>>> GetAll() =>
             OkOrNotFound(await _conferenceService.GetAllAsync());
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromBody] ConferenceDetailsDto dto)
+        public async Task<ActionResult> Add([FromBody] ConferenceDetailsDto dto)
         {
             await _conferenceService.AddAsync(dto);
-            return CreatedAtAction(nameof(GetAsync), new { id = dto.Id }, null);
+            return CreatedAtAction(nameof(Get), new { id = dto.Id }, null);
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<ActionResult> UpdateAsync(Guid id, ConferenceDetailsDto dto)
+        public async Task<ActionResult> Update(Guid id, ConferenceDetailsDto dto)
         {
             dto.Id = id;
             await _conferenceService.UpdateAsync(dto);
@@ -38,7 +38,7 @@ namespace Confab.Modules.Conferences.Api.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-        public async Task<ActionResult> DeleteAsync(Guid id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             await _conferenceService.DeleteAsync(id);
 

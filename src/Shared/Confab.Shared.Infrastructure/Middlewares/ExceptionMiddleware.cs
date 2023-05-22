@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Net;
+using Confab.Shared.Abstractions.Exceptions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace Confab.Shared.Infrastructure.Middlewares
@@ -6,10 +8,12 @@ namespace Confab.Shared.Infrastructure.Middlewares
     internal class ExceptionMiddleware : IMiddleware
     {
         private readonly ILogger<ExceptionMiddleware> _logger;
+        private readonly IExceptionToResponseMapper _exceptionToResponseMapper;
 
-        public ExceptionMiddleware(ILogger<ExceptionMiddleware> logger)
+        public ExceptionMiddleware(ILogger<ExceptionMiddleware> logger, IExceptionToResponseMapper exceptionToResponseMapper)
         {
             _logger = logger;
+            _exceptionToResponseMapper = exceptionToResponseMapper;
         }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
@@ -25,10 +29,16 @@ namespace Confab.Shared.Infrastructure.Middlewares
             }
         }
 
-        private static async Task HandleErrorAsync(HttpContext context, Exception exception)
+        private async Task HandleErrorAsync(HttpContext context, Exception exception)
         {
-            var errorResponse = new { code = exception.GetType().Name, message = exception.Message };
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
+            var errorResponse = _exceptionToResponseMapper.Map(exception);
+            context.Response.StatusCode = (int)(errorResponse?.StatusCode ?? HttpStatusCode.InternalServerError);
+
+            if (errorResponse?.Response is null)
+            {
+                return;
+            }
+
             await context.Response.WriteAsJsonAsync(errorResponse);
         }
     }

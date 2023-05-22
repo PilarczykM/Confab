@@ -3,6 +3,7 @@ using Confab.Modules.Conferences.Core;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: InternalsVisibleTo("Confab.Bootstrapper")]
+
 namespace Confab.Modules.Conferences.Api
 {
     internal static class Extensions
@@ -15,4 +16,3 @@ namespace Confab.Modules.Conferences.Api
         }
     }
 }
-

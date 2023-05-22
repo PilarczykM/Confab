@@ -9,4 +9,3 @@ namespace Confab.Modules.Conferences.Api.Controllers
         public ActionResult<string> Get() => "Conferences API!";
     }
 }
-

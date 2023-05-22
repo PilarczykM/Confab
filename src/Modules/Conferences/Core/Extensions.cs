@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: InternalsVisibleTo("Confab.Modules.Conferences.Api")]
+
 namespace Confab.Modules.Conferences.Core
 {
     internal static class Extensions
@@ -12,4 +13,3 @@ namespace Confab.Modules.Conferences.Core
         }
     }
 }
-

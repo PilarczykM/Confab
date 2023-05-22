@@ -5,14 +5,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: InternalsVisibleTo("Confab.Bootstrapper")]
+
 namespace Confab.Shared.Infrastructure
 {
-
     internal static class Extensions
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddControllers()
+            services
+                .AddControllers()
                 .ConfigureApplicationPartManager(manager =>
                 {
                     manager.FeatureProviders.Add(new InternalControllerFeatureProvider());
@@ -34,4 +35,3 @@ namespace Confab.Shared.Infrastructure
         }
     }
 }
-

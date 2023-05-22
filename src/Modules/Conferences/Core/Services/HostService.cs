@@ -57,8 +57,8 @@ namespace Confab.Modules.Conferences.Core.Services
                 return null;
             }
             var dto = Map<HostDetailsDto>(host);
-            dto.Conferences = host.Conferences?
-                .Select(
+            dto.Conferences = host.Conferences
+                ?.Select(
                     x =>
                         new ConferenceDto()
                         {

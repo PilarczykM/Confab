@@ -52,8 +52,8 @@ namespace Confab.Modules.Conferences.Core.Services
             var conference =
                 await _conferenceRepository.GetAsync(id)
                 ?? throw new ConferenceNotFoundException(id);
-            
-            if (await _conferenceDelitionPolicy.CanDeleteAsync(conference))
+
+            if (await _conferenceDelitionPolicy.CanDeleteAsync(conference) is false)
             {
                 throw new ConferenceCanNotBeDeletedException(id);
             }
@@ -65,7 +65,7 @@ namespace Confab.Modules.Conferences.Core.Services
         {
             var conferences = await _conferenceRepository.GetAllAsync();
 
-            return conferences.Select(x => Map<ConferenceDetailsDto>(x)).ToList();
+            return conferences.Select(x => Map<ConferenceDto>(x)).ToList();
         }
 
         public async Task<ConferenceDetailsDto> GetAsync(Guid id)
@@ -103,7 +103,7 @@ namespace Confab.Modules.Conferences.Core.Services
                 Id = conference.Id,
                 Name = conference.Name,
                 HostId = conference.HostId,
-                HostName = conference.Host.Name,
+                HostName = conference.Host?.Name,
                 Location = conference.Location,
                 ParticipantsLimit = conference.ParticipantsLimit,
                 From = conference.From,

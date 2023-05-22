@@ -5,4 +5,3 @@
         public DateTime CurrentDate() => DateTime.UtcNow;
     }
 }
-

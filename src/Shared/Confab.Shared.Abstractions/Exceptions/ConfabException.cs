@@ -2,9 +2,7 @@
 {
     public abstract class ConfabException : Exception
     {
-        protected ConfabException(string message) : base(message)
-        {
-        }
+        protected ConfabException(string message)
+            : base(message) { }
     }
 }
-

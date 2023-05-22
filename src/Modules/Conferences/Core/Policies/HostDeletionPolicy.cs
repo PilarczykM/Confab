@@ -11,7 +11,6 @@ namespace Confab.Modules.Conferences.Core.Policies
             this._conferenceDelitionPolicy = conferenceDelitionPolicy;
         }
 
-
         public async Task<bool> CanDeleteAsync(Host host)
         {
             if (host.Conferences is null || !host.Conferences.Any())
@@ -31,4 +30,3 @@ namespace Confab.Modules.Conferences.Core.Policies
         }
     }
 }
-

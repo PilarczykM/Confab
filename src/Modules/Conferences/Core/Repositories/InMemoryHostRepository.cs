@@ -5,7 +5,7 @@ namespace Confab.Modules.Conferences.Core.Repositories
     internal class InMemoryHostRepository : IHostRepository
     {
         // Not thread safe. Use concurrent collections.
-        private readonly List<Host> _hosts = new List<Host>();
+        private readonly List<Host> _hosts = new();
 
         public Task AddAsync(Host host)
         {
@@ -25,7 +25,8 @@ namespace Confab.Modules.Conferences.Core.Repositories
             return _hosts;
         }
 
-        public Task<Host> GetAsync(Guid id) => Task.FromResult(_hosts.SingleOrDefault(x => x.Id == id));
+        public Task<Host> GetAsync(Guid id) =>
+            Task.FromResult(_hosts.SingleOrDefault(x => x.Id == id));
 
         public Task UpdateAsync(Host host)
         {
@@ -33,4 +34,3 @@ namespace Confab.Modules.Conferences.Core.Repositories
         }
     }
 }
-

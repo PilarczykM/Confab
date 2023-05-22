@@ -5,4 +5,3 @@
         public List<ConferenceDto> Conferences { get; set; }
     }
 }
-

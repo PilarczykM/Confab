@@ -15,4 +15,3 @@ namespace Confab.Modules.Conferences.Core.DTO
         public string Description { get; set; }
     }
 }
-

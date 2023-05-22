@@ -7,4 +7,3 @@ namespace Confab.Modules.Conferences.Core.Policies
         Task<bool> CanDeleteAsync(Conference conference);
     }
 }
-

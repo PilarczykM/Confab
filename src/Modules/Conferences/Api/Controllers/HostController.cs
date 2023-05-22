@@ -14,12 +14,12 @@ namespace Confab.Modules.Conferences.Api.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult<HostDetailsDto>> GetAsync(Guid id)
-            => OkOrNotFound(await _hostService.GetAsync(id));
+        public async Task<ActionResult<HostDetailsDto>> GetAsync(Guid id) =>
+            OkOrNotFound(await _hostService.GetAsync(id));
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<HostDetailsDto>>> GetAllAsync()
-            => OkOrNotFound(await _hostService.GetAllAsync());
+        public async Task<ActionResult<IReadOnlyList<HostDetailsDto>>> GetAllAsync() =>
+            OkOrNotFound(await _hostService.GetAllAsync());
 
         [HttpPost]
         public async Task<ActionResult> AddAsync([FromBody] HostDto dto)
@@ -46,4 +46,3 @@ namespace Confab.Modules.Conferences.Api.Controllers
         }
     }
 }
-

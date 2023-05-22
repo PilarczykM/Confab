@@ -20,23 +20,19 @@ namespace Confab.Modules.Conferences.Core.Services
         public async Task AddAsync(HostDto dto)
         {
             dto.Id = Guid.NewGuid();
-            await _repository.AddAsync(new()
-            {
-                Id = dto.Id,
-                Name = dto.Name,
-                Description = dto.Description,
-            });
+            await _repository.AddAsync(
+                new()
+                {
+                    Id = dto.Id,
+                    Name = dto.Name,
+                    Description = dto.Description,
+                }
+            );
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var host = await _repository.GetAsync(id);
-
-            if (host is null)
-            {
-                throw new HostNotFoundException(id);
-            }
-
+            var host = await _repository.GetAsync(id) ?? throw new HostNotFoundException(id);
             if (await _hostDeletionPolicy.CanDeleteAsync(host) is false)
             {
                 throw new HostCanNotBeDeletedException(host.Id);
@@ -51,6 +47,7 @@ namespace Confab.Modules.Conferences.Core.Services
 
             return (IReadOnlyList<HostDetailsDto>)hosts.Select(Map<HostDto>).ToList();
         }
+
         public async Task<HostDetailsDto> GetAsync(Guid id)
         {
             var host = await _repository.GetAsync(id);
@@ -60,18 +57,23 @@ namespace Confab.Modules.Conferences.Core.Services
                 return null;
             }
             var dto = Map<HostDetailsDto>(host);
-            dto.Conferences = host.Conferences.Select(x => new ConferenceDto()
-            {
-                Id = x.Id,
-                HostId = x.HostId,
-                HostName = x.Host.Name,
-                Name = x.Name,
-                From = x.From,
-                To = x.To,
-                Location = x.Location,
-                LogoUrl = x.LogoUrl,
-                ParticipantsLimit = x.ParticipantsLimit
-            }).ToList();
+            dto.Conferences = host.Conferences
+                .Select(
+                    x =>
+                        new ConferenceDto()
+                        {
+                            Id = x.Id,
+                            HostId = x.HostId,
+                            HostName = x.Host.Name,
+                            Name = x.Name,
+                            From = x.From,
+                            To = x.To,
+                            Location = x.Location,
+                            LogoUrl = x.LogoUrl,
+                            ParticipantsLimit = x.ParticipantsLimit
+                        }
+                )
+                .ToList();
 
             return dto;
         }
@@ -90,8 +92,9 @@ namespace Confab.Modules.Conferences.Core.Services
             await _repository.UpdateAsync(host);
         }
 
-        private static T Map<T>(Host host) where T : HostDto, new()
-            => new T()
+        private static T Map<T>(Host host)
+            where T : HostDto, new() =>
+            new()
             {
                 Id = host.Id,
                 Name = host.Name,

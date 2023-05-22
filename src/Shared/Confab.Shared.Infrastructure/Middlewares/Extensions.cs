@@ -1,4 +1,5 @@
 ﻿using System;
+using Confab.Shared.Abstractions.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +9,8 @@ namespace Confab.Shared.Infrastructure.Middlewares
     {
         public static IServiceCollection AddMiddlewares(this IServiceCollection services)
         {
-            services.AddSingleton<ExceptionMiddleware>();
+            services.AddScoped<ExceptionMiddleware>();
+            services.AddSingleton<IExceptionToResponseMapper, ExceptionToResponseMapper>();
 
             return services;
         }

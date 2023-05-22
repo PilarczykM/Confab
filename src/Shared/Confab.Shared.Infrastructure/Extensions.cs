@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
-using Confab.Shared.Infrastructure.Middlewares;
+using Confab.Shared.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +15,7 @@ namespace Confab.Shared.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddSingleton<IClock, UtcClock>();
-            services.AddMiddlewares();
+            services.AddErrorHandling();
             services
                 .AddControllers()
                 .ConfigureApplicationPartManager(manager =>
@@ -28,7 +28,7 @@ namespace Confab.Shared.Infrastructure
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
-            app.UseMiddlewares();
+            app.UseErrorHandling();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

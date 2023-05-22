@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -12,12 +13,14 @@ namespace Confab.Shared.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddSingleton<IClock, UtcClock>();
             services
                 .AddControllers()
                 .ConfigureApplicationPartManager(manager =>
                 {
                     manager.FeatureProviders.Add(new InternalControllerFeatureProvider());
                 });
+
             return services;
         }
 

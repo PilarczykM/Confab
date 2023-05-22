@@ -1,8 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
+using Confab.Modules.Conferences.Core;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: InternalsVisibleTo("Confab.Bootstrapper")]
-namespace Confab.Modules.Conferences.Core
+namespace Confab.Modules.Conferences.Api
 {
     internal static class Extensions
     {

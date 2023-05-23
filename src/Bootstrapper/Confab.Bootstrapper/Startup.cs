@@ -9,15 +9,15 @@ namespace Confab.Bootstrapper
         private readonly IList<Assembly> _assemblies;
         private readonly IList<IModule> _modules;
 
-        public Startup()
+        public Startup(IConfiguration configuration)
         {
-            _assemblies = ModuleLoader.LoadAssemblies();
+            _assemblies = ModuleLoader.LoadAssemblies(configuration);
             _modules = ModuleLoader.LoadModules(_assemblies);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSharedInfrastructure();
+            services.AddSharedInfrastructure(_assemblies, _modules);
 
             foreach (var module in _modules)
             {

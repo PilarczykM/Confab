@@ -7,4 +7,12 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Core\Confab.Modules.Conferences.Core.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Update="module.conferences.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="module.conferences.development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>

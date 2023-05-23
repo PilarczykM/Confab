@@ -1,3 +1,5 @@
+using Confab.Shared.Infrastructure.Modules;
+
 namespace Confab.Bootstrapper
 {
     public class Program
@@ -9,6 +11,7 @@ namespace Confab.Bootstrapper
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureModules();
     }
 }

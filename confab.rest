@@ -1,7 +1,6 @@
 @url = http://localhost:5000
-@conferencesApi = {{url}}/conferences-module
 
 # Home
 ###
-GET {{conferencesApi}}
+GET {{url}}
 

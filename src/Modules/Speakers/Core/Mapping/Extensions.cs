@@ -3,7 +3,7 @@ using Confab.Modules.Speakers.Core.Entities;
 
 namespace Confab.Modules.Speakers.Core.Mapping
 {
-    public static class Extensions
+    internal static class Extensions
     {
         public static SpeakerDto AsDto(this Speaker entity)
             => new()

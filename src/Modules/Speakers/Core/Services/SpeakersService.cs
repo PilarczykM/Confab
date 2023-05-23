@@ -5,7 +5,7 @@ using Confab.Modules.Speakers.Core.Mapping;
 
 namespace Confab.Modules.Speakers.Core.Services
 {
-    public class SpeakersService : ISpeakersService
+    internal sealed class SpeakersService : ISpeakersService
     {
         private readonly ISpeakersRepository _speakersRepository;
 

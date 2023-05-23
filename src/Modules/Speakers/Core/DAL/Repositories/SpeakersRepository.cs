@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Confab.Modules.Speakers.Core.DAL.Repositories
 {
-    internal class SpeakersRepository : ISpeakersRepository
+    internal sealed class SpeakersRepository : ISpeakersRepository
     {
         private readonly DbSet<Speaker> _speakers;
         private readonly SpeakerDbContext _context;

@@ -2,7 +2,7 @@
 
 namespace Confab.Modules.Speakers.Core.Exceptions
 {
-    public class SpeakerNotFoundException : ConfabException
+    public sealed class SpeakerNotFoundException : ConfabException
     {
         public SpeakerNotFoundException(Guid id) : base($"Speaker with id: '{id}' was not found.")
         {

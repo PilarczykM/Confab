@@ -18,8 +18,8 @@ namespace Confab.Modules.Conferences.Core
             services.AddPostgres<ConferencesDbContext>();
             //services.AddSingleton<IHostRepository, InMemoryHostRepository>();
             //services.AddSingleton<IConferenceRepository, InMemoryConferenceRepository>();
-            services.AddSingleton<IHostRepository, HostRepository>();
-            services.AddSingleton<IConferenceRepository, ConferenceRepository>();
+            services.AddScoped<IHostRepository, HostRepository>();
+            services.AddScoped<IConferenceRepository, ConferenceRepository>();
             services.AddSingleton<IHostDeletionPolicy, HostDeletionPolicy>();
             services.AddSingleton<IConferenceDelitionPolicy, ConferenceDelitionPolicy>();
             services.AddScoped<IHostService, HostService>();

@@ -25,7 +25,7 @@ namespace Confab.Bootstrapper
             }
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
         {
             app.UseSharedInfrastructure();
 
@@ -34,11 +34,16 @@ namespace Confab.Bootstrapper
                 module.Use(app);
             }
 
+            logger.LogInformation($"Modules: '{string.Join(", ", _modules.Select(x => x.Name))}'");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapGet("/", context => context.Response.WriteAsync("Confab API!"));
             });
+
+            _assemblies.Clear();
+            _modules.Clear();
         }
     }
 }

@@ -18,9 +18,6 @@ namespace Confab.Modules.Conferences.Api
             services.AddCore();
         }
 
-        public void Use(IApplicationBuilder app)
-        {
-        }
+        public void Use(IApplicationBuilder app) { }
     }
 }
-

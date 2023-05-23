@@ -11,4 +11,3 @@ namespace Confab.Modules.Speakers.Core.DAL.Repositories
         Task Update(Speaker speaker);
     }
 }
-

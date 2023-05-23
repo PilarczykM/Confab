@@ -1,0 +1,35 @@
+@url = http://localhost:5000/speakers-module
+@id = 725a5307-8108-4c69-9ca6-297d6fd3bdb3
+
+# speakers - speaker GET ALL
+###
+Get {{url}}/speakers
+
+# speakers - speaker GET by id
+###
+Get {{url}}/speakers/{{id}}
+
+# speakers - speaker POST
+###
+POST {{url}}/speakers
+Content-Type: application/json
+
+{
+    "Email": "john.doe@gmail.com",
+    "FullName": "John Doe",
+    "Bio": "John Doe from past",
+    "AvatarUrl": "www.avatar.com"
+}
+
+# speakers - speaker UPDATE
+###
+PUT {{url}}/speakers/
+Content-Type: application/json
+
+{
+    "id": "725a5307-8108-4c69-9ca6-297d6fd3bdb3",
+    "Email": "john.doe@gmail.com",
+    "FullName": "John Doe",
+    "Bio": "John Doe from past 2",
+    "AvatarUrl": "www.avatar.com"
+}

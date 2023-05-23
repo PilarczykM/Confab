@@ -13,19 +13,13 @@ namespace Confab.Modules.Speakers.Api
 
         public string Path => BasePath;
 
-        public IEnumerable<string> Policies = new[]
-        {
-            "speakers"
-        };
+        public IEnumerable<string> Policies = new[] { "speakers" };
 
         public void Register(IServiceCollection services)
         {
             services.AddCore();
         }
 
-        public void Use(IApplicationBuilder app)
-        {
-        }
+        public void Use(IApplicationBuilder app) { }
     }
 }
-

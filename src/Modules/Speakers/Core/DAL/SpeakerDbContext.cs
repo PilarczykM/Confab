@@ -6,9 +6,9 @@ namespace Confab.Modules.Speakers.Core.DAL
     public class SpeakerDbContext : DbContext
     {
         public DbSet<Speaker> Speakers { get; set; }
-        public SpeakerDbContext(DbContextOptions<SpeakerDbContext> options) : base(options)
-        {
-        }
+
+        public SpeakerDbContext(DbContextOptions<SpeakerDbContext> options)
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -17,4 +17,3 @@ namespace Confab.Modules.Speakers.Core.DAL
         }
     }
 }
-

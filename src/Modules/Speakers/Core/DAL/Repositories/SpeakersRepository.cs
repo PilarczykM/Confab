@@ -20,14 +20,12 @@ namespace Confab.Modules.Speakers.Core.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<Speaker>> BrowseAsync()
-            => await _speakers.ToListAsync();
+        public async Task<IReadOnlyList<Speaker>> BrowseAsync() => await _speakers.ToListAsync();
 
-        public async Task<bool> ExistsAsync(Guid id)
-            => await _speakers.AnyAsync(x => x.Id == id);
+        public async Task<bool> ExistsAsync(Guid id) => await _speakers.AnyAsync(x => x.Id == id);
 
-        public async Task<Speaker> GetAsync(Guid id)
-            => await _speakers.SingleOrDefaultAsync(x => x.Id == id);
+        public async Task<Speaker> GetAsync(Guid id) =>
+            await _speakers.SingleOrDefaultAsync(x => x.Id == id);
 
         public async Task Update(Speaker speaker)
         {
@@ -36,4 +34,3 @@ namespace Confab.Modules.Speakers.Core.DAL.Repositories
         }
     }
 }
-

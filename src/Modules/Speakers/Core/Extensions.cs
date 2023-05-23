@@ -6,6 +6,7 @@ using Confab.Shared.Infrastructure.Postgres;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: InternalsVisibleTo("Confab.Modules.Speakers.Api")]
+
 namespace Confab.Modules.Speakers.Core
 {
     internal static class Extensions
@@ -20,4 +21,3 @@ namespace Confab.Modules.Speakers.Core
         }
     }
 }
-

@@ -17,4 +17,3 @@ namespace Confab.Modules.Speakers.Api.Controllers
         }
     }
 }
-

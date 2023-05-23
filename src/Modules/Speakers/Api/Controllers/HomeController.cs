@@ -9,4 +9,3 @@ namespace Confab.Modules.Speakers.Api.Controllers
         public ActionResult<string> Get() => "Speakers API!";
     }
 }
-

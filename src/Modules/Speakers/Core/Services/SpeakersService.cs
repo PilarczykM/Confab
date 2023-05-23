@@ -40,9 +40,9 @@ namespace Confab.Modules.Speakers.Core.Services
 
         public async Task UpdateAsync(SpeakerDto speaker)
         {
-            var alreadyExists = await _speakersRepository.ExistsAsync(speaker.Id);
+            var speakerExists = await _speakersRepository.ExistsAsync(speaker.Id);
 
-            if (alreadyExists)
+            if (!speakerExists)
             {
                 throw new SpeakerNotFoundException(speaker.Id);
             }
@@ -51,4 +51,3 @@ namespace Confab.Modules.Speakers.Core.Services
         }
     }
 }
-

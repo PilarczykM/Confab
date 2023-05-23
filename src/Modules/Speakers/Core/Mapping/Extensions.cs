@@ -5,8 +5,8 @@ namespace Confab.Modules.Speakers.Core.Mapping
 {
     internal static class Extensions
     {
-        public static SpeakerDto AsDto(this Speaker entity)
-            => new()
+        public static SpeakerDto AsDto(this Speaker entity) =>
+            new()
             {
                 Id = entity.Id,
                 Email = entity.Email,
@@ -15,8 +15,8 @@ namespace Confab.Modules.Speakers.Core.Mapping
                 AvatarUrl = entity.AvatarUrl
             };
 
-        public static Speaker AsEntity(this SpeakerDto dto)
-            => new()
+        public static Speaker AsEntity(this SpeakerDto dto) =>
+            new()
             {
                 Id = dto.Id,
                 Email = dto.Email,
@@ -26,4 +26,3 @@ namespace Confab.Modules.Speakers.Core.Mapping
             };
     }
 }
-

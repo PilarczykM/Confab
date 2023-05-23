@@ -3,5 +3,5 @@
 
 # Home
 ###
-GET {{url}}
+GET {{conferencesApi}}
 

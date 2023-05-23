@@ -1,5 +1,5 @@
 @url = http://localhost:5000/conferences-module
-@id = b77ee26c-7f89-4edd-a47d-270b605de75f
+@id = de47a7fa-91bc-4c92-bf53-469b0bd86f84
 
 # Conferences - Host GET ALL
 ###
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 {
     "Name": "John Lemon",
-    "description": "Long description"
+    "description": "Long description2"
 }
 
 # Conferences - Host DELETE

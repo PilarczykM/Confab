@@ -2,6 +2,7 @@
 using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Exceptions;
+using Confab.Shared.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,7 @@ namespace Confab.Shared.Infrastructure
         {
             services.AddSingleton<IClock, UtcClock>();
             services.AddErrorHandling();
+            services.AddHostedService<AppInitializator>();
             services
                 .AddControllers()
                 .ConfigureApplicationPartManager(manager =>

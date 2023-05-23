@@ -27,13 +27,10 @@ namespace Confab.Modules.Conferences.Core.DAL.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<Host>> GetAllAsync()
-            => await _hosts.ToListAsync();
+        public async Task<IReadOnlyList<Host>> GetAllAsync() => await _hosts.ToListAsync();
 
-        public Task<Host> GetAsync(Guid id)
-            => _hosts
-                .Include(x => x.Conferences)
-                .SingleOrDefaultAsync(x => x.Id == id);
+        public Task<Host> GetAsync(Guid id) =>
+            _hosts.Include(x => x.Conferences).SingleOrDefaultAsync(x => x.Id == id);
 
         public async Task UpdateAsync(Host host)
         {
@@ -42,4 +39,3 @@ namespace Confab.Modules.Conferences.Core.DAL.Repositories
         }
     }
 }
-

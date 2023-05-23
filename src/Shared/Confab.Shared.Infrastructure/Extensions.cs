@@ -4,7 +4,6 @@ using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Exceptions;
 using Confab.Shared.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +13,7 @@ namespace Confab.Shared.Infrastructure
 {
     internal static class Extensions
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services)
         {
             services.AddSingleton<IClock, UtcClock>();
             services.AddErrorHandling();
@@ -29,16 +28,10 @@ namespace Confab.Shared.Infrastructure
             return services;
         }
 
-        public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSharedInfrastructure(this IApplicationBuilder app)
         {
             app.UseErrorHandling();
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", context => context.Response.WriteAsync("Confab API!"));
-            });
 
             return app;
         }

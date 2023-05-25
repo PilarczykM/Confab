@@ -1,6 +1,8 @@
 @url = http://localhost:5000/conferences-module
 @id = d5a87351-5875-4aa7-b253-e22d9a3ec5d5
 
+# REMEMBER TO SignIn and use access token
+
 # Conferences - Conference GET ALL
 ###
 Get {{url}}/conference

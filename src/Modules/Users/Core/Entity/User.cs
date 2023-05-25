@@ -1,6 +1,6 @@
 ﻿namespace Confab.Modules.Users.Core.Entity
 {
-    internal class User
+    public class User
     {
         public Guid Id { get; set; }
         public string Email { get; set; }

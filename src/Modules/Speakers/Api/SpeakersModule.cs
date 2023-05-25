@@ -13,7 +13,7 @@ namespace Confab.Modules.Speakers.Api
 
         public string Path => BasePath;
 
-        public IEnumerable<string> Policies = new[] { "speakers" };
+        public IEnumerable<string> Policies { get; } = new[] { "speakers" };
 
         public void Register(IServiceCollection services)
         {

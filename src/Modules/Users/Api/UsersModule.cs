@@ -13,7 +13,8 @@ namespace Confab.Modules.Users.Api
 
         public string Path => BasePath;
 
-        public IEnumerable<string> Policies = new[] { "users" };
+        public IEnumerable<string> Policies { get; } = new[] { "users" };
+
 
         public void Register(IServiceCollection services)
         {

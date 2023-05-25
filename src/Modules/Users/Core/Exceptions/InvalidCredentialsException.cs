@@ -2,7 +2,7 @@
 
 namespace Confab.Modules.Users.Core.Exceptions
 {
-    public class InvalidCredentialsException : ConfabException
+    internal class InvalidCredentialsException : ConfabException
     {
         public InvalidCredentialsException() : base("Invalid credentials.")
         {

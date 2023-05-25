@@ -2,7 +2,7 @@
 
 namespace Confab.Modules.Users.Core.Exceptions
 {
-    public class EmailInUseException : ConfabException
+    internal class EmailInUseException : ConfabException
     {
         public EmailInUseException() : base("Email is already in use.")
         {

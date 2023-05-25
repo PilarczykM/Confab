@@ -2,7 +2,7 @@
 
 namespace Confab.Modules.Users.Core.Exceptions
 {
-    public class UserNotActiveException : ConfabException
+    internal class UserNotActiveException : ConfabException
     {
         public Guid Id { get; }
 

@@ -1,0 +1,39 @@
+@url = http://localhost:5000/users-module
+
+@email = "user2@gmail.com"
+@password = "secret"
+
+###
+@accessToken = {{sign_in.response.body.$.accessToken}}
+
+# Account - account GET
+###
+Get {{url}}/account
+Authorization: Bearer {{accessToken}}
+
+# Account - account POST sign-up
+###
+POST {{url}}/account/sign-up
+Content-Type: application/json
+
+{
+    "email": {{email}},
+    "password": {{password}},
+    "Role": "user",
+    "claims": {
+        "permissions": [
+            "conferences", "hosts", "speakers", "tickets", "users"
+            ]
+    }
+}
+
+# Account - account POST sign-in
+###
+# @name sign_in
+POST {{url}}/account/sign-in
+Content-Type: application/json
+
+{
+    "email": {{email}},
+    "password": {{password}}
+}

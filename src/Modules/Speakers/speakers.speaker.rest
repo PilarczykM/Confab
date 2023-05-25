@@ -1,6 +1,8 @@
 @url = http://localhost:5000/speakers-module
 @id = 725a5307-8108-4c69-9ca6-297d6fd3bdb3
 
+# REMEMBER TO SignIn and use access token
+
 # speakers - speaker GET ALL
 ###
 Get {{url}}/speakers

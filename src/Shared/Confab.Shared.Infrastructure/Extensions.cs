@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Confab.Shared.Abstractions.Module;
 using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
+using Confab.Shared.Infrastructure.Auth;
 using Confab.Shared.Infrastructure.Exceptions;
 using Confab.Shared.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +42,7 @@ namespace Confab.Shared.Infrastructure
             }
 
             services.AddSingleton<IClock, UtcClock>();
+            services.AddAuth(modules);
             services.AddErrorHandling();
             services.AddHostedService<AppInitializator>();
             services
@@ -75,7 +77,9 @@ namespace Confab.Shared.Infrastructure
         public static IApplicationBuilder UseSharedInfrastructure(this IApplicationBuilder app)
         {
             app.UseErrorHandling();
+            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthorization();
 
             return app;
         }

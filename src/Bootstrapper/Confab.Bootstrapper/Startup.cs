@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Confab.Shared.Abstractions.Module;
 using Confab.Shared.Infrastructure;
+using Confab.Shared.Infrastructure.Modules;
 
 namespace Confab.Bootstrapper
 {
@@ -40,6 +41,7 @@ namespace Confab.Bootstrapper
             {
                 endpoints.MapControllers();
                 endpoints.MapGet("/", context => context.Response.WriteAsync("Confab API!"));
+                endpoints.MapModuleInfo();
             });
 
             _assemblies.Clear();

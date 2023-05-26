@@ -5,6 +5,7 @@ using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Auth;
 using Confab.Shared.Infrastructure.Exceptions;
+using Confab.Shared.Infrastructure.Modules;
 using Confab.Shared.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -56,6 +57,8 @@ namespace Confab.Shared.Infrastructure
                     }
                 );
             });
+
+            services.AddModuleInfo(modules);
 
             services.AddSwaggerGen(swagger =>
             {

@@ -17,6 +17,8 @@ namespace Confab.Shared.Infrastructure
 {
     internal static class Extensions
     {
+        private const string CorsPolicy = "cors";
+
         public static IServiceCollection AddSharedInfrastructure(
             this IServiceCollection services,
             IList<Assembly> assemblies,
@@ -41,6 +43,15 @@ namespace Confab.Shared.Infrastructure
                 }
             }
 
+            services.AddCors(cors =>
+            {
+                cors.AddPolicy(CorsPolicy, x =>
+                {
+                    x.WithOrigins("*")
+                    .WithMethods("POST", "PUT", "DELETE")
+                    .WithHeaders("Content-Type", "Authorization");
+                });
+            });
             services.AddSingleton<IClock, UtcClock>();
             services.AddAuth(modules);
             services.AddErrorHandling();
@@ -76,6 +87,7 @@ namespace Confab.Shared.Infrastructure
 
         public static IApplicationBuilder UseSharedInfrastructure(this IApplicationBuilder app)
         {
+            app.UseCors(CorsPolicy);
             app.UseErrorHandling();
             app.UseAuthentication();
             app.UseRouting();

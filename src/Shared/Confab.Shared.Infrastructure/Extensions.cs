@@ -45,12 +45,15 @@ namespace Confab.Shared.Infrastructure
 
             services.AddCors(cors =>
             {
-                cors.AddPolicy(CorsPolicy, x =>
-                {
-                    x.WithOrigins("*")
-                    .WithMethods("POST", "PUT", "DELETE")
-                    .WithHeaders("Content-Type", "Authorization");
-                });
+                cors.AddPolicy(
+                    CorsPolicy,
+                    x =>
+                    {
+                        x.WithOrigins("*")
+                            .WithMethods("POST", "PUT", "DELETE")
+                            .WithHeaders("Content-Type", "Authorization");
+                    }
+                );
             });
             services.AddSingleton<IClock, UtcClock>();
             services.AddAuth(modules);

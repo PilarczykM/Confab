@@ -1,13 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
+using Confab.Shared.Abstractions.Context;
 using Confab.Shared.Abstractions.Module;
 using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Auth;
+using Confab.Shared.Infrastructure.Context;
 using Confab.Shared.Infrastructure.Exceptions;
 using Confab.Shared.Infrastructure.Modules;
 using Confab.Shared.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,12 +66,14 @@ namespace Confab.Shared.Infrastructure
             services.AddSwaggerGen(swagger =>
             {
                 swagger.CustomSchemaIds(x => x.FullName);
-                swagger.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Confab API",
-                    Version = "v1",
-                });
+                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "Confab API", Version = "v1", });
             });
+
+            services.AddSingleton<IContextFactory, ContextFactory>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IContext>(
+                sp => sp.GetRequiredService<IContextFactory>().Create()
+            );
 
             services.AddSingleton<IClock, UtcClock>();
             services.AddAuth(modules);

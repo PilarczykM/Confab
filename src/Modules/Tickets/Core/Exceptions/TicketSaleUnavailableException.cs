@@ -4,7 +4,8 @@ namespace Confab.Modules.Tickets.Core.Exceptions
 {
     internal class TicketSaleUnavailableException : ConfabException
     {
-        public TicketSaleUnavailableException(Guid conferenceId) : base($"Ticket sale for the conference is unavaiable.")
+        public TicketSaleUnavailableException(Guid conferenceId)
+            : base($"Ticket sale for the conference is unavaiable.")
         {
             ConferenceId = conferenceId;
         }
@@ -12,4 +13,3 @@ namespace Confab.Modules.Tickets.Core.Exceptions
         public Guid ConferenceId { get; }
     }
 }
-

@@ -16,8 +16,14 @@ namespace Confab.Modules.Tickets.Core.Services
         private readonly IClock _clock;
         private readonly ILogger<TicketService> _logger;
 
-        public TicketService(IConferenceRepository conferenceRepository, ITicketSaleRepository ticketSaleRepository,
-            ITicketRepository ticketRepository, ITicketGenereator ticketGenereator, IClock clock, ILogger<TicketService> logger)
+        public TicketService(
+            IConferenceRepository conferenceRepository,
+            ITicketSaleRepository ticketSaleRepository,
+            ITicketRepository ticketRepository,
+            ITicketGenereator ticketGenereator,
+            IClock clock,
+            ILogger<TicketService> logger
+        )
         {
             _conferenceRepository = conferenceRepository;
             _ticketSaleRepository = ticketSaleRepository;
@@ -31,8 +37,16 @@ namespace Confab.Modules.Tickets.Core.Services
         {
             var tickets = await _ticketRepository.GetForUserAsync(userId);
 
-            return tickets.Select(x => new TicketDto(x.Code, x.Price, x.PurchasedAt.Value,
-                    new ConferenceDto(x.ConferenceId, x.Conference.Name)))
+            return tickets
+                .Select(
+                    x =>
+                        new TicketDto(
+                            x.Code,
+                            x.Price,
+                            x.PurchasedAt.Value,
+                            new ConferenceDto(x.ConferenceId, x.Conference.Name)
+                        )
+                )
                 .OrderBy(x => x.PurchasedAt);
         }
 
@@ -51,7 +65,10 @@ namespace Confab.Modules.Tickets.Core.Services
             }
 
             var now = _clock.CurrentDate();
-            var ticketSale = await _ticketSaleRepository.GetCurrentForConferenceAsync(conferenceId, now);
+            var ticketSale = await _ticketSaleRepository.GetCurrentForConferenceAsync(
+                conferenceId,
+                now
+            );
             if (ticketSale is null)
             {
                 throw new TicketSaleUnavailableException(conferenceId);
@@ -66,14 +83,23 @@ namespace Confab.Modules.Tickets.Core.Services
             ticket = _ticketGenereator.Generate(conferenceId, ticketSale.Id, ticketSale.Price);
             ticket.Purchase(userId, _clock.CurrentDate(), ticketSale.Price);
             await _ticketRepository.AddAsync(ticket);
-            _logger.LogInformation($"Ticket with ID: '{ticket.Id}' was generated for the conference: " +
-                                   $"'{conferenceId}' by user: '{userId}'.");
+            _logger.LogInformation(
+                $"Ticket with ID: '{ticket.Id}' was generated for the conference: "
+                    + $"'{conferenceId}' by user: '{userId}'."
+            );
         }
 
-        private async Task PurchaseAvailableAsync(TicketSale ticketSale, Guid userId, decimal? price)
+        private async Task PurchaseAvailableAsync(
+            TicketSale ticketSale,
+            Guid userId,
+            decimal? price
+        )
         {
             var conferenceId = ticketSale.ConferenceId;
-            var ticket = ticketSale.Tickets.Where(x => x.UserId is null).OrderBy(_ => Guid.NewGuid()).FirstOrDefault();
+            var ticket = ticketSale.Tickets
+                .Where(x => x.UserId is null)
+                .OrderBy(_ => Guid.NewGuid())
+                .FirstOrDefault();
             if (ticket is null)
             {
                 throw new TicketsUnavailableException(conferenceId);
@@ -81,8 +107,10 @@ namespace Confab.Modules.Tickets.Core.Services
 
             ticket.Purchase(userId, _clock.CurrentDate(), price);
             await _ticketRepository.UpdateAsync(ticket);
-            _logger.LogInformation($"Ticket with ID: '{ticket.Id}' was purchased for the conference: " +
-                                   $"'{conferenceId}' by user: '{userId}'.");
+            _logger.LogInformation(
+                $"Ticket with ID: '{ticket.Id}' was purchased for the conference: "
+                    + $"'{conferenceId}' by user: '{userId}'."
+            );
         }
     }
 }

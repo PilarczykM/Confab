@@ -6,9 +6,6 @@ namespace Confab.Modules.Tickets.Core.DAL.Configurations
 {
     internal class ConferenceConfiguration : IEntityTypeConfiguration<Conference>
     {
-        public void Configure(EntityTypeBuilder<Conference> builder)
-        {
-        }
+        public void Configure(EntityTypeBuilder<Conference> builder) { }
     }
 }
-

@@ -15,4 +15,3 @@ namespace Confab.Modules.Tickets.Core.DTO
         public DateTime To { get; set; }
     }
 }
-

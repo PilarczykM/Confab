@@ -7,4 +7,3 @@ namespace Confab.Modules.Tickets.Core.Services
         Ticket Generate(Guid conferenceId, Guid ticketSaleId, decimal? price);
     }
 }
-

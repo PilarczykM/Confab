@@ -15,22 +15,22 @@ namespace Confab.Modules.Tickets.Core.DAL.Repositories
             _ticketSales = _context.TicketSales;
         }
 
-        public Task<TicketSale> GetAsync(Guid id)
-            => _ticketSales
+        public Task<TicketSale> GetAsync(Guid id) =>
+            _ticketSales
                 .Include(x => x.Tickets)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-        public Task<TicketSale> GetCurrentForConferenceAsync(Guid conferenceId, DateTime now)
-            => _ticketSales
+        public Task<TicketSale> GetCurrentForConferenceAsync(Guid conferenceId, DateTime now) =>
+            _ticketSales
                 .Where(x => x.ConferenceId == conferenceId)
                 .OrderBy(x => x.From)
                 .Include(x => x.Tickets)
                 .AsNoTracking()
                 .LastOrDefaultAsync(x => x.From <= now && x.To >= now);
 
-        public async Task<IReadOnlyList<TicketSale>> BrowseForConferenceAsync(Guid conferenceId)
-            => await _ticketSales
+        public async Task<IReadOnlyList<TicketSale>> BrowseForConferenceAsync(Guid conferenceId) =>
+            await _ticketSales
                 .AsNoTracking()
                 .Where(x => x.ConferenceId == conferenceId)
                 .Include(x => x.Tickets)
@@ -56,4 +56,3 @@ namespace Confab.Modules.Tickets.Core.DAL.Repositories
         }
     }
 }
-

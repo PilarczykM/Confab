@@ -10,4 +10,3 @@
         public IList<TicketSale> TicketSales { get; set; }
     }
 }
-

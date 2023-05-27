@@ -12,8 +12,8 @@ namespace Confab.Modules.Tickets.Core.Services
             _clock = clock;
         }
 
-        public Ticket Generate(Guid conferenceId, Guid ticketSaleId, decimal? price)
-            => new()
+        public Ticket Generate(Guid conferenceId, Guid ticketSaleId, decimal? price) =>
+            new()
             {
                 Id = Guid.NewGuid(),
                 TicketSaleId = ticketSaleId,
@@ -24,4 +24,3 @@ namespace Confab.Modules.Tickets.Core.Services
             };
     }
 }
-

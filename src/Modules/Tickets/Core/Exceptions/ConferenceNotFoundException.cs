@@ -4,7 +4,8 @@ namespace Confab.Modules.Tickets.Core.Exceptions
 {
     internal class ConferenceNotFoundException : ConfabException
     {
-        public ConferenceNotFoundException(Guid id) : base($"Conference wih ID: '{id}' was not found.")
+        public ConferenceNotFoundException(Guid id)
+            : base($"Conference wih ID: '{id}' was not found.")
         {
             Id = id;
         }
@@ -12,4 +13,3 @@ namespace Confab.Modules.Tickets.Core.Exceptions
         public Guid Id { get; }
     }
 }
-

@@ -15,7 +15,8 @@ namespace Confab.Modules.Tickets.Core.DAL.Repositories
             _conferences = _context.Conferences;
         }
 
-        public Task<Conference> GetAsync(Guid id) => _conferences.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+        public Task<Conference> GetAsync(Guid id) =>
+            _conferences.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         public async Task AddAsync(Conference conference)
         {
@@ -36,4 +37,3 @@ namespace Confab.Modules.Tickets.Core.DAL.Repositories
         }
     }
 }
-

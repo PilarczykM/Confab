@@ -23,4 +23,3 @@ namespace Confab.Modules.Tickets.Core
         }
     }
 }
-

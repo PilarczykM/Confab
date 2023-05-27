@@ -13,4 +13,3 @@ namespace Confab.Modules.Tickets.Core.Repositories
         Task AddManyAsync(IEnumerable<Ticket> ticket);
     }
 }
-

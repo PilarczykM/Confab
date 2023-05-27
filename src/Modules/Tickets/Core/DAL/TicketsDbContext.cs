@@ -9,9 +9,8 @@ namespace Confab.Modules.Tickets.Core.DAL
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketSale> TicketSales { get; set; }
 
-        public TicketsDbContext(DbContextOptions<TicketsDbContext> options) : base(options)
-        {
-        }
+        public TicketsDbContext(DbContextOptions<TicketsDbContext> options)
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,4 +19,3 @@ namespace Confab.Modules.Tickets.Core.DAL
         }
     }
 }
-

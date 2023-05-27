@@ -16,8 +16,14 @@ namespace Confab.Modules.Tickets.Core.Services
         private readonly IClock _clock;
         private readonly ILogger<TicketSaleService> _logger;
 
-        public TicketSaleService(IConferenceRepository conferenceRepository, ITicketSaleRepository ticketSaleRepository,
-            ITicketRepository ticketRepository, ITicketGenereator ticketGenereator, IClock clock, ILogger<TicketSaleService> logger)
+        public TicketSaleService(
+            IConferenceRepository conferenceRepository,
+            ITicketSaleRepository ticketSaleRepository,
+            ITicketRepository ticketRepository,
+            ITicketGenereator ticketGenereator,
+            IClock clock,
+            ILogger<TicketSaleService> logger
+        )
         {
             _conferenceRepository = conferenceRepository;
             _ticketSaleRepository = ticketSaleRepository;
@@ -26,6 +32,7 @@ namespace Confab.Modules.Tickets.Core.Services
             _clock = clock;
             _logger = logger;
         }
+
         public async Task AddAsync(TicketSaleDto dto)
         {
             var conference = await _conferenceRepository.GetAsync(dto.ConferenceId);
@@ -55,16 +62,24 @@ namespace Confab.Modules.Tickets.Core.Services
                 Name = dto.Name
             };
             await _ticketSaleRepository.AddAsync(ticketSale);
-            _logger.LogInformation($"Added a ticket sale conference with ID: '{conference.Id}' ({dto.From} - {dto.To}).");
+            _logger.LogInformation(
+                $"Added a ticket sale conference with ID: '{conference.Id}' ({dto.From} - {dto.To})."
+            );
 
             if (ticketSale.Amount.HasValue)
             {
-                _logger.LogInformation($"Generation {ticketSale.Amount} tickets for conference with ID: '{conference.Id}'...");
+                _logger.LogInformation(
+                    $"Generation {ticketSale.Amount} tickets for conference with ID: '{conference.Id}'..."
+                );
 
                 var tickets = new List<Ticket>();
                 for (int i = 0; i < ticketSale.Amount; i++)
                 {
-                    var ticket = _ticketGenereator.Generate(conference.Id, ticketSale.Id, ticketSale.Price);
+                    var ticket = _ticketGenereator.Generate(
+                        conference.Id,
+                        ticketSale.Id,
+                        ticketSale.Price
+                    );
                     tickets.Add(ticket);
                 }
 
@@ -96,7 +111,10 @@ namespace Confab.Modules.Tickets.Core.Services
             }
 
             var now = _clock.CurrentDate();
-            var ticketSale = await _ticketSaleRepository.GetCurrentForConferenceAsync(conferenceId, now);
+            var ticketSale = await _ticketSaleRepository.GetCurrentForConferenceAsync(
+                conferenceId,
+                now
+            );
 
             return ticketSale is not null ? Map(ticketSale, conference) : null;
         }
@@ -110,8 +128,15 @@ namespace Confab.Modules.Tickets.Core.Services
                 avaiableTickets = ticketSale.Tickets.Count(x => x.UserId is null);
             }
 
-            return new TicketSaleInfoDto(ticketSale.Name, new ConferenceDto(conference.Id, conference.Name), ticketSale.Price,
-                totalTickets, avaiableTickets, ticketSale.From, ticketSale.To);
+            return new TicketSaleInfoDto(
+                ticketSale.Name,
+                new ConferenceDto(conference.Id, conference.Name),
+                ticketSale.Price,
+                totalTickets,
+                avaiableTickets,
+                ticketSale.From,
+                ticketSale.To
+            );
         }
     }
 }

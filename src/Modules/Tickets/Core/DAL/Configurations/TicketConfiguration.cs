@@ -13,4 +13,3 @@ namespace Confab.Modules.Tickets.Core.DAL.Configurations
         }
     }
 }
-

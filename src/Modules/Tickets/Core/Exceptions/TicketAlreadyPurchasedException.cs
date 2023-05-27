@@ -15,4 +15,3 @@ namespace Confab.Modules.Tickets.Core.Exceptions
         public Guid UserId { get; }
     }
 }
-

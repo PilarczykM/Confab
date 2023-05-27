@@ -12,4 +12,3 @@ namespace Confab.Modules.Tickets.Core.Repositories
         Task DeleteAsync(TicketSale ticketSale);
     }
 }
-

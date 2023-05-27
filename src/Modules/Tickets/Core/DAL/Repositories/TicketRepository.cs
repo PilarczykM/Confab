@@ -15,21 +15,23 @@ namespace Confab.Modules.Tickets.Core.DAL.Repositories
             _tickets = _context.Tickets;
         }
 
-        public Task<Ticket> GetAsync(Guid conferenceId, Guid userId)
-            => _tickets.AsNoTracking().SingleOrDefaultAsync(x => x.ConferenceId == conferenceId && x.UserId == userId);
-
-        public Task<int> CountForConferenceAsync(Guid conferenceId)
-            => _tickets.AsNoTracking().CountAsync(x => x.ConferenceId == conferenceId);
-
-        public async Task<IReadOnlyList<Ticket>> GetForUserAsync(Guid userId)
-            => await _tickets
-            .Include(x => x.Conference)
-            .Where(x => x.UserId == userId)
+        public Task<Ticket> GetAsync(Guid conferenceId, Guid userId) =>
+            _tickets
                 .AsNoTracking()
-            .ToListAsync();
+                .SingleOrDefaultAsync(x => x.ConferenceId == conferenceId && x.UserId == userId);
 
-        public Task<Ticket> GetAsync(string code)
-            => _tickets.AsNoTracking().SingleOrDefaultAsync(x => x.Code == code);
+        public Task<int> CountForConferenceAsync(Guid conferenceId) =>
+            _tickets.AsNoTracking().CountAsync(x => x.ConferenceId == conferenceId);
+
+        public async Task<IReadOnlyList<Ticket>> GetForUserAsync(Guid userId) =>
+            await _tickets
+                .Include(x => x.Conference)
+                .Where(x => x.UserId == userId)
+                .AsNoTracking()
+                .ToListAsync();
+
+        public Task<Ticket> GetAsync(string code) =>
+            _tickets.AsNoTracking().SingleOrDefaultAsync(x => x.Code == code);
 
         public async Task AddAsync(Ticket ticket)
         {
@@ -56,4 +58,3 @@ namespace Confab.Modules.Tickets.Core.DAL.Repositories
         }
     }
 }
-

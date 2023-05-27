@@ -19,4 +19,3 @@ namespace Confab.Modules.Tickets.Api.Controllers
         }
     }
 }
-

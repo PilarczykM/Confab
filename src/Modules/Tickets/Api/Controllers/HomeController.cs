@@ -9,4 +9,3 @@ namespace Confab.Modules.Tickets.Api.Controllers
         public ActionResult<string> Get() => "Tickets API";
     }
 }
-

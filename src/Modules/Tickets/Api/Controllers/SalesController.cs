@@ -17,13 +17,13 @@ namespace Confab.Modules.Tickets.Api.Controllers
 
         [HttpGet("conferences/{conferenceId}")]
         [ProducesResponseType(200)]
-        public async Task<ActionResult<IEnumerable<TicketSaleInfoDto>>> GetAll(Guid conferenceId)
-            => OkOrNotFound(await _ticketSaleService.GetAllAsync(conferenceId));
+        public async Task<ActionResult<IEnumerable<TicketSaleInfoDto>>> GetAll(Guid conferenceId) =>
+            OkOrNotFound(await _ticketSaleService.GetAllAsync(conferenceId));
 
         [HttpGet("conferences/{conferenceId}/current")]
         [ProducesResponseType(200)]
-        public async Task<ActionResult<TicketSaleInfoDto>> GetCurrent(Guid conferenceId)
-            => OkOrNotFound(await _ticketSaleService.GetCurrentAsync(conferenceId));
+        public async Task<ActionResult<TicketSaleInfoDto>> GetCurrent(Guid conferenceId) =>
+            OkOrNotFound(await _ticketSaleService.GetCurrentAsync(conferenceId));
 
         [Authorize(Policy)]
         [HttpPost("conferences/{conferenceId}")]
@@ -39,4 +39,3 @@ namespace Confab.Modules.Tickets.Api.Controllers
         }
     }
 }
-

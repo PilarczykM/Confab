@@ -21,8 +21,8 @@ namespace Confab.Modules.Tickets.Api.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]
-        public async Task<ActionResult<IReadOnlyList<TicketDto>>> Get()
-            => Ok(await _ticketService.GetForUserAsync(_context.Identity.Id));
+        public async Task<ActionResult<IReadOnlyList<TicketDto>>> Get() =>
+            Ok(await _ticketService.GetForUserAsync(_context.Identity.Id));
 
         [HttpPost("conferences/{conferenceId}/purchase")]
         [ProducesResponseType(201)]
@@ -35,4 +35,3 @@ namespace Confab.Modules.Tickets.Api.Controllers
         }
     }
 }
-

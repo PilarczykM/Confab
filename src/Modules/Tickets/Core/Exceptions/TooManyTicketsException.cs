@@ -1,0 +1,15 @@
+﻿using Confab.Shared.Abstractions.Exceptions;
+
+namespace Confab.Modules.Tickets.Core.Exceptions
+{
+    internal class TooManyTicketsException : ConfabException
+    {
+        public TooManyTicketsException(Guid conferenceId) : base($"")
+        {
+            ConferenceId = conferenceId;
+        }
+
+        public Guid ConferenceId { get; }
+    }
+}
+

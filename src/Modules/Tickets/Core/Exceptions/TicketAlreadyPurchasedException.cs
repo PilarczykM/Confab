@@ -4,7 +4,8 @@ namespace Confab.Modules.Tickets.Core.Exceptions
 {
     internal class TicketAlreadyPurchasedException : ConfabException
     {
-        public TicketAlreadyPurchasedException(Guid conferenceId, Guid userId) : base($"")
+        public TicketAlreadyPurchasedException(Guid conferenceId, Guid userId)
+            : base($"Ticket for the conference has already been purchased.")
         {
             ConferenceId = conferenceId;
             UserId = userId;

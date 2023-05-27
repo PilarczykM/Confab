@@ -36,7 +36,7 @@ namespace Confab.Modules.Tickets.Core.Services
 
             if (conference.ParticipantsLimit.HasValue)
             {
-                var ticketCount = await _ticketRepository.CounForConferenceAsync(conference.Id);
+                var ticketCount = await _ticketRepository.CountForConferenceAsync(conference.Id);
                 if (ticketCount + dto.Amount > conference.ParticipantsLimit)
                 {
                     throw new TooManyTicketsException(conference.Id);

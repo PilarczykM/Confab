@@ -1,9 +1,10 @@
 ﻿using Confab.Modules.Tickets.Core.Entities;
+using Confab.Shared.Abstractions.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace Confab.Modules.Tickets.Core.DAL
 {
-    internal class TicketsDbContext : DbContext
+    public class TicketsDbContext : DbContext
     {
         public DbSet<Conference> Conferences { get; set; }
         public DbSet<Ticket> Tickets { get; set; }

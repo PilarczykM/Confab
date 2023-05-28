@@ -2,7 +2,7 @@
 
 namespace Confab.Modules.Tickets.Core.Exceptions
 {
-    internal class TooManyTicketsException : ConfabException
+    public class TooManyTicketsException : ConfabException
     {
         public TooManyTicketsException(Guid conferenceId)
             : base($"Too many tickets would be generated for the conference.")

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Confab.Modules.Tickets.Core.DAL.Configurations
 {
-    internal class TicketSaleConfiguration : IEntityTypeConfiguration<TicketSale>
+    public class TicketSaleConfiguration : IEntityTypeConfiguration<TicketSale>
     {
         public void Configure(EntityTypeBuilder<TicketSale> builder) { }
     }

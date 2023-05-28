@@ -2,7 +2,7 @@
 
 namespace Confab.Modules.Tickets.Core.Exceptions
 {
-    internal class TicketsUnavailableException : ConfabException
+    public class TicketsUnavailableException : ConfabException
     {
         public TicketsUnavailableException(Guid conferenceId)
             : base($"There are no available tickets for the conference.")

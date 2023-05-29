@@ -19,6 +19,9 @@ namespace Confab.Shared.Infrastructure.Postgres
             var options = services.GetOptions<PostgresOptions>(PostgresOptions.Postgres);
             services.AddDbContext<T>(x => x.UseNpgsql(options.ConnectionStrings));
 
+            // EF Core + Npgsql issue
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
             return services;
         }
     }

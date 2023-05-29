@@ -1,5 +1,4 @@
-﻿using Confab.Modules.Conferences.Messages.Events;
-using Confab.Modules.Tickets.Core.Entities;
+﻿using Confab.Modules.Tickets.Core.Entities;
 using Confab.Modules.Tickets.Core.Repositories;
 using Confab.Shared.Abstractions.Events;
 using Microsoft.Extensions.Logging;
@@ -11,7 +10,10 @@ namespace Confab.Modules.Tickets.Core.Events.External.Handlers
         private readonly IConferenceRepository _conferenceRepository;
         private readonly ILogger<ConferenceCreatedHandler> _logger;
 
-        public ConferenceCreatedHandler(IConferenceRepository conferenceRepository, ILogger<ConferenceCreatedHandler> logger)
+        public ConferenceCreatedHandler(
+            IConferenceRepository conferenceRepository,
+            ILogger<ConferenceCreatedHandler> logger
+        )
         {
             _conferenceRepository = conferenceRepository;
             _logger = logger;
@@ -33,4 +35,3 @@ namespace Confab.Modules.Tickets.Core.Events.External.Handlers
         }
     }
 }
-

@@ -77,6 +77,7 @@ namespace Confab.Shared.Infrastructure
             );
 
             services.AddSingleton<IClock, UtcClock>();
+            services.AddModuleRequests(assemblies);
             services.AddAuth(modules);
             services.AddErrorHandling();
             services.AddEvents(assemblies);

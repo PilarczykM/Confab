@@ -12,16 +12,15 @@ namespace Confab.Shared.Infrastructure.Events
             _serviceProvider = serviceProvider;
         }
 
-        public async Task PublicAsync<TEvent>(TEvent @event) where TEvent : class, IEvent
+        public async Task PublicAsync<TEvent>(TEvent @event)
+            where TEvent : class, IEvent
         {
             using var scope = _serviceProvider.CreateScope();
             var handlers = scope.ServiceProvider.GetServices<IEventHandler<TEvent>>();
 
-            var tasks = handlers
-                .Select(x => x.HandleAsync(@event)); // Do this when you don't need to orchestrate events.
+            var tasks = handlers.Select(x => x.HandleAsync(@event)); // Do this when you don't need to orchestrate events.
 
             await Task.WhenAll(tasks);
         }
     }
 }
-

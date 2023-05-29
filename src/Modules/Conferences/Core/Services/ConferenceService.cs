@@ -4,7 +4,7 @@ using Confab.Modules.Conferences.Core.Events;
 using Confab.Modules.Conferences.Core.Exceptions;
 using Confab.Modules.Conferences.Core.Policies;
 using Confab.Modules.Conferences.Core.Repositories;
-using Confab.Shared.Abstractions.Module;
+using Confab.Shared.Abstractions.Messaging;
 
 namespace Confab.Modules.Conferences.Core.Services
 {
@@ -13,19 +13,19 @@ namespace Confab.Modules.Conferences.Core.Services
         private readonly IConferenceRepository _conferenceRepository;
         private readonly IHostRepository _hostRepository;
         private readonly IConferenceDelitionPolicy _conferenceDelitionPolicy;
-        private readonly IModuleClient _moduleClient;
+        private readonly IMessageBroker _messageBroker;
 
         public ConferenceService(
             IConferenceRepository conferenceRepository,
             IHostRepository hostRepository,
             IConferenceDelitionPolicy conferenceDelitionPolicy,
-            IModuleClient moduleClient
+            IMessageBroker messageBroker
         )
         {
             _conferenceRepository = conferenceRepository;
             _hostRepository = hostRepository;
             _conferenceDelitionPolicy = conferenceDelitionPolicy;
-            _moduleClient = moduleClient;
+            _messageBroker = messageBroker;
         }
 
         public async Task AddAsync(ConferenceDetailsDto dto)
@@ -50,7 +50,7 @@ namespace Confab.Modules.Conferences.Core.Services
             };
             await _conferenceRepository.AddAsync(conference);
 
-            await _moduleClient.PublishAsync(
+            await _messageBroker.PublishAsync(
                 new ConferenceCreated(
                     conference.Id,
                     conference.Name,

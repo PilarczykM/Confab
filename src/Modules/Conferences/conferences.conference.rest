@@ -1,7 +1,7 @@
 @url = http://localhost:5000/conferences-module
 @id = d5a87351-5875-4aa7-b253-e22d9a3ec5d5
-
-# REMEMBER TO SignIn and use access token
+@hostId = d9921cc0-55cf-427a-85a5-244424fb6063
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZmNmZDg1Ny1hY2FmLTQzYWEtYTUyZi1lMjRhNmI2YjgwZmIiLCJ1bmlxdWVfbmFtZSI6IjlmY2ZkODU3LWFjYWYtNDNhYS1hNTJmLWUyNGE2YjZiODBmYiIsImp0aSI6IjliMzMxMjA4LWM1OTgtNGI1Ny1hZDE4LTllOTkzMmUzMzA5NCIsImlhdCI6IjE2ODUzNTgxMTM0MTIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwicGVybWlzc2lvbnMiOlsiY29uZmVyZW5jZXMiLCJob3N0cyIsInNwZWFrZXJzIiwidGlja2V0cyIsInVzZXJzIl0sIm5iZiI6MTY4NTM1ODExMywiZXhwIjoxNjg1Mzk0MTEzLCJpc3MiOiJjb25mYWIifQ.MUxqy1k1q8ylqlci_LEoApFRNSHavJJYpWrtHiV7ba0
 
 # Conferences - Conference GET ALL
 ###
@@ -14,11 +14,12 @@ Get {{url}}/conference/{{id}}
 # Conferences - Conference POST
 ###
 POST {{url}}/conference
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
     "hostname": "John Lemon",
-    "hostid": "de47a7fa-91bc-4c92-bf53-469b0bd86f84",
+    "hostid": "{{hostId}}",
     "Name": "My first conference",
     "Location": "Poland",
     "description": "Long description",

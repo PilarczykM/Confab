@@ -1,7 +1,7 @@
 @url = http://localhost:5000/conferences-module
-@id = de47a7fa-91bc-4c92-bf53-469b0bd86f84
+@id = d9921cc0-55cf-427a-85a5-244424fb6063
 
-# REMEMBER TO SignIn and use access token
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZmNmZDg1Ny1hY2FmLTQzYWEtYTUyZi1lMjRhNmI2YjgwZmIiLCJ1bmlxdWVfbmFtZSI6IjlmY2ZkODU3LWFjYWYtNDNhYS1hNTJmLWUyNGE2YjZiODBmYiIsImp0aSI6IjlmZTU5N2Q0LWM2NzgtNGFkMS04ZWJhLWVhODQyMDBjZmViZiIsImlhdCI6IjE2ODUyNTE2NDIxNDciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwicGVybWlzc2lvbnMiOlsiY29uZmVyZW5jZXMiLCJob3N0cyIsInNwZWFrZXJzIiwidGlja2V0cyIsInVzZXJzIl0sIm5iZiI6MTY4NTI1MTY0MiwiZXhwIjoxNjg1Mjg3NjQyLCJpc3MiOiJjb25mYWIifQ.dLq57uN0grpBa3qNHXbXPDf36d4gEOBtnL0uzgoTr48
 
 # Conferences - Host GET ALL
 ###
@@ -14,6 +14,7 @@ Get {{url}}/host/{{id}}
 # Conferences - Host POST
 ###
 POST {{url}}/host
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {

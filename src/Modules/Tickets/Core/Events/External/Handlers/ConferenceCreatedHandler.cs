@@ -10,7 +10,10 @@ namespace Confab.Modules.Tickets.Core.Events.External.Handlers
         private readonly IConferenceRepository _conferenceRepository;
         private readonly ILogger<ConferenceCreatedHandler> _logger;
 
-        public ConferenceCreatedHandler(IConferenceRepository conferenceRepository, ILogger<ConferenceCreatedHandler> logger)
+        public ConferenceCreatedHandler(
+            IConferenceRepository conferenceRepository,
+            ILogger<ConferenceCreatedHandler> logger
+        )
         {
             _conferenceRepository = conferenceRepository;
             _logger = logger;
@@ -32,4 +35,3 @@ namespace Confab.Modules.Tickets.Core.Events.External.Handlers
         }
     }
 }
-

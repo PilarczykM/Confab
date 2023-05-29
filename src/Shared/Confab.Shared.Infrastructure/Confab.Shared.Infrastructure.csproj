@@ -20,11 +20,6 @@
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.5.0" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="Context\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Context\" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
 	</ItemGroup>
 </Project>

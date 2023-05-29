@@ -4,7 +4,7 @@ using Confab.Modules.Conferences.Core.Events;
 using Confab.Modules.Conferences.Core.Exceptions;
 using Confab.Modules.Conferences.Core.Policies;
 using Confab.Modules.Conferences.Core.Repositories;
-using Confab.Shared.Abstractions.Events;
+using Confab.Shared.Abstractions.Module;
 
 namespace Confab.Modules.Conferences.Core.Services
 {
@@ -13,19 +13,19 @@ namespace Confab.Modules.Conferences.Core.Services
         private readonly IConferenceRepository _conferenceRepository;
         private readonly IHostRepository _hostRepository;
         private readonly IConferenceDelitionPolicy _conferenceDelitionPolicy;
-        private readonly IEventDispatcher _eventDispatcher;
+        private readonly IModuleClient _moduleClient;
 
         public ConferenceService(
             IConferenceRepository conferenceRepository,
             IHostRepository hostRepository,
-            IConferenceDelitionPolicy conferenceDelitionPolicy
-,
-            IEventDispatcher eventDispatcher)
+            IConferenceDelitionPolicy conferenceDelitionPolicy,
+            IModuleClient moduleClient
+        )
         {
             _conferenceRepository = conferenceRepository;
             _hostRepository = hostRepository;
             _conferenceDelitionPolicy = conferenceDelitionPolicy;
-            _eventDispatcher = eventDispatcher;
+            _moduleClient = moduleClient;
         }
 
         public async Task AddAsync(ConferenceDetailsDto dto)
@@ -50,7 +50,15 @@ namespace Confab.Modules.Conferences.Core.Services
             };
             await _conferenceRepository.AddAsync(conference);
 
-            await _eventDispatcher.PublicAsync(new ConferenceCreated(conference.Id, conference.Name, conference.ParticipantsLimit, conference.From, conference.To));
+            await _moduleClient.PublishAsync(
+                new ConferenceCreated(
+                    conference.Id,
+                    conference.Name,
+                    conference.ParticipantsLimit,
+                    conference.From,
+                    conference.To
+                )
+            );
         }
 
         public async Task DeleteAsync(Guid id)

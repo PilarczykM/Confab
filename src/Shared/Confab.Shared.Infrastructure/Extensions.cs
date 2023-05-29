@@ -8,6 +8,7 @@ using Confab.Shared.Infrastructure.Auth;
 using Confab.Shared.Infrastructure.Context;
 using Confab.Shared.Infrastructure.Events;
 using Confab.Shared.Infrastructure.Exceptions;
+using Confab.Shared.Infrastructure.Messaging;
 using Confab.Shared.Infrastructure.Modules;
 using Confab.Shared.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
@@ -78,6 +79,7 @@ namespace Confab.Shared.Infrastructure
 
             services.AddSingleton<IClock, UtcClock>();
             services.AddModuleRequests(assemblies);
+            services.AddMessaging();
             services.AddAuth(modules);
             services.AddErrorHandling();
             services.AddEvents(assemblies);

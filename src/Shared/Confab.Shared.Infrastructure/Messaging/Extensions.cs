@@ -1,5 +1,4 @@
-﻿using System;
-using Confab.Shared.Abstractions.Messaging;
+﻿using Confab.Shared.Abstractions.Messaging;
 using Confab.Shared.Infrastructure.Messaging.Brokers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,4 +14,3 @@ namespace Confab.Shared.Infrastructure.Messaging
         }
     }
 }
-

@@ -6,6 +6,7 @@ namespace Confab.Shared.Infrastructure.Messaging.Brokers
     internal sealed class InMemoryMessageBroker : IMessageBroker
     {
         private readonly IModuleClient _moduleClient;
+
         public InMemoryMessageBroker(IModuleClient moduleClient)
         {
             _moduleClient = moduleClient;
@@ -33,4 +34,3 @@ namespace Confab.Shared.Infrastructure.Messaging.Brokers
         }
     }
 }
-

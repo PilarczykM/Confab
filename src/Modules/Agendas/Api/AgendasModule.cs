@@ -19,15 +19,9 @@ namespace Confab.Modules.Agendas.Api
 
         public void Register(IServiceCollection services)
         {
-            services
-                .AddDomain()
-                .AddApplication()
-                .AddInfrastructure();
+            services.AddDomain().AddApplication().AddInfrastructure();
         }
 
-        public void Use(IApplicationBuilder app)
-        {
-        }
+        public void Use(IApplicationBuilder app) { }
     }
 }
-

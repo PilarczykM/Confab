@@ -5,6 +5,7 @@ using Confab.Shared.Abstractions.Module;
 using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Auth;
+using Confab.Shared.Infrastructure.Commands;
 using Confab.Shared.Infrastructure.Context;
 using Confab.Shared.Infrastructure.Events;
 using Confab.Shared.Infrastructure.Exceptions;
@@ -83,6 +84,7 @@ namespace Confab.Shared.Infrastructure
             services.AddAuth(modules);
             services.AddErrorHandling();
             services.AddEvents(assemblies);
+            services.AddCommands(assemblies);
             services.AddHostedService<AppInitializator>();
             services
                 .AddControllers()

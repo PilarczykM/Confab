@@ -12,4 +12,3 @@
         public IEnumerable<SpeakerDto> MyProperty { get; set; }
     }
 }
-

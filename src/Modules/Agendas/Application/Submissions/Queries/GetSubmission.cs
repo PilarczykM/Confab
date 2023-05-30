@@ -8,4 +8,3 @@ namespace Confab.Modules.Agendas.Application.Submissions.Queries
         public Guid Id { get; set; }
     }
 }
-

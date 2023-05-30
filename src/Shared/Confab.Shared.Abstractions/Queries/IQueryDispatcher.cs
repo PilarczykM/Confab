@@ -5,4 +5,3 @@
         Task<TResult> QueryAsync<TResult>(IQuery<TResult> query);
     }
 }
-

@@ -11,6 +11,7 @@ using Confab.Shared.Infrastructure.Events;
 using Confab.Shared.Infrastructure.Exceptions;
 using Confab.Shared.Infrastructure.Messaging;
 using Confab.Shared.Infrastructure.Modules;
+using Confab.Shared.Infrastructure.Queries;
 using Confab.Shared.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -85,6 +86,7 @@ namespace Confab.Shared.Infrastructure
             services.AddErrorHandling();
             services.AddEvents(assemblies);
             services.AddCommands(assemblies);
+            services.AddQueries(assemblies);
             services.AddHostedService<AppInitializator>();
             services
                 .AddControllers()

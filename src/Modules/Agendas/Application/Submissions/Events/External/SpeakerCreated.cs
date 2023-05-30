@@ -2,6 +2,5 @@
 
 namespace Confab.Modules.Agendas.Application.Submissions.Events.External
 {
-    public record SpeakerCreated(Guid id, string FullName) : IEvent;
+    public record SpeakerCreated(Guid Id, string FullName) : IEvent;
 }
-

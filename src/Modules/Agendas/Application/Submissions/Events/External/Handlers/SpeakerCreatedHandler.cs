@@ -15,14 +15,13 @@ namespace Confab.Modules.Agendas.Application.Submissions.Events.External.Handler
 
         async Task IEventHandler<SpeakerCreated>.HandleAsync(SpeakerCreated @event)
         {
-            if (await _speakerRepository.ExistsAsync(@event.id))
+            if (await _speakerRepository.ExistsAsync(@event.Id))
             {
                 return;
             }
 
-            var speaker = Speaker.Create(@event.id, @event.FullName);
+            var speaker = Speaker.Create(@event.Id, @event.FullName);
             await _speakerRepository.CreateAsync(speaker);
         }
     }
 }
-

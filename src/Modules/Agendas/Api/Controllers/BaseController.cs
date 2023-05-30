@@ -1,8 +1,7 @@
-﻿using Confab.Modules.Agendas.Api;
-using Confab.Shared.Infrastructure.Api;
+﻿using Confab.Shared.Infrastructure.Api;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Confab.Modules.Conferences.Api.Controllers
+namespace Confab.Modules.Agendas.Api.Controllers
 {
     [ApiController]
     [Route(AgendasModule.BasePath + "/[controller]")]

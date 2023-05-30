@@ -1,5 +1,4 @@
-﻿using Confab.Modules.Conferences.Api.Controllers;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Confab.Modules.Agendas.Api.Controllers
 {

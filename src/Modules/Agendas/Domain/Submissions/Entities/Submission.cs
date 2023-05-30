@@ -18,6 +18,8 @@ namespace Confab.Modules.Agendas.Domain.Submissions.Entities
         public IEnumerable<string> Tags { get; private set; }
         public IEnumerable<Speaker> Speakers => _speakers;
 
+        private Submission() { }
+
         public Submission(
             AggregateId id,
             ConferenceId conferenceId,

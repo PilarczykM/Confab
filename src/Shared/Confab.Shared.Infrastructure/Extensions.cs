@@ -9,6 +9,7 @@ using Confab.Shared.Infrastructure.Commands;
 using Confab.Shared.Infrastructure.Context;
 using Confab.Shared.Infrastructure.Events;
 using Confab.Shared.Infrastructure.Exceptions;
+using Confab.Shared.Infrastructure.Kernel;
 using Confab.Shared.Infrastructure.Messaging;
 using Confab.Shared.Infrastructure.Modules;
 using Confab.Shared.Infrastructure.Queries;
@@ -85,6 +86,7 @@ namespace Confab.Shared.Infrastructure
             services.AddAuth(modules);
             services.AddErrorHandling();
             services.AddEvents(assemblies);
+            services.AddDomainEvents(assemblies);
             services.AddCommands(assemblies);
             services.AddQueries(assemblies);
             services.AddHostedService<AppInitializator>();

@@ -12,9 +12,7 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            builder
-                .Property(x => x.Id)
-                .HasConversion(x => x.Value, x => new AggregateId(x));
+            builder.Property(x => x.Id).HasConversion(x => x.Value, x => new AggregateId(x));
 
             builder
                 .Property(x => x.ConferenceId)
@@ -22,11 +20,12 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Configurations
 
             builder
                 .Property(x => x.Tags)
-                .HasConversion(x => string.Join(',', x), x => x.Split(',', StringSplitOptions.TrimEntries));
+                .HasConversion(
+                    x => string.Join(',', x),
+                    x => x.Split(',', StringSplitOptions.TrimEntries)
+                );
 
-            builder
-                .Property(x => x.Version)
-                .IsConcurrencyToken();
+            builder.Property(x => x.Version).IsConcurrencyToken();
 
             builder
                 .Property(x => x.Tags)
@@ -34,8 +33,9 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Configurations
                     new ValueComparer<IEnumerable<string>>(
                         (c1, c2) => c1.SequenceEqual(c2),
                         c => c.Aggregate(0, (a, next) => HashCode.Combine(a, next.GetHashCode())),
-                        c => c.ToArray()));
+                        c => c.ToArray()
+                    )
+                );
         }
     }
 }
-

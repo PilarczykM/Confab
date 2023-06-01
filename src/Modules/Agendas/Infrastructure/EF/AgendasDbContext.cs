@@ -8,10 +8,8 @@ namespace Confab.Modules.Agendas.Infrastructure.EF
         public DbSet<Submission> Submissions { get; set; }
         public DbSet<Speaker> Speakers { get; set; }
 
-        public AgendasDbContext(DbContextOptions<AgendasDbContext> options) : base(options)
-        {
-
-        }
+        public AgendasDbContext(DbContextOptions<AgendasDbContext> options)
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,4 +19,3 @@ namespace Confab.Modules.Agendas.Infrastructure.EF
         }
     }
 }
-

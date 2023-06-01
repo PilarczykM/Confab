@@ -16,8 +16,8 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Repositories
             _speakers = _context.Speakers;
         }
 
-        public async Task<IEnumerable<Speaker>> BrowseAsync(IEnumerable<AggregateId> ids)
-            => await _speakers.Where(x => ids.Contains(x.Id)).ToListAsync();
+        public async Task<IEnumerable<Speaker>> BrowseAsync(IEnumerable<AggregateId> ids) =>
+            await _speakers.Where(x => ids.Contains(x.Id)).ToListAsync();
 
         public async Task AddAsync(Speaker speaker)
         {
@@ -25,8 +25,6 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<bool> ExistsAsync(AggregateId id)
-            => _speakers.AnyAsync(x => x.Id.Equals(id));
+        public Task<bool> ExistsAsync(AggregateId id) => _speakers.AnyAsync(x => x.Id.Equals(id));
     }
 }
-

@@ -10,14 +10,9 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Configurations
         public void Configure(EntityTypeBuilder<Speaker> builder)
         {
             builder.HasKey(x => x.Id);
-            builder
-                .Property(x => x.Id)
-                .HasConversion(x => x.Value, x => new AggregateId(x));
+            builder.Property(x => x.Id).HasConversion(x => x.Value, x => new AggregateId(x));
 
-            builder
-                .Property(x => x.Version)
-                .IsConcurrencyToken();
+            builder.Property(x => x.Version).IsConcurrencyToken();
         }
     }
 }
-

@@ -22,8 +22,8 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<Submission> GetAsync(AggregateId id)
-            => _submissions.Include(x => x.Speakers).SingleOrDefaultAsync(x => x.Id.Equals(id));
+        public Task<Submission> GetAsync(AggregateId id) =>
+            _submissions.Include(x => x.Speakers).SingleOrDefaultAsync(x => x.Id.Equals(id));
 
         public async Task UpdateAsync(Submission submission)
         {
@@ -32,4 +32,3 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Repositories
         }
     }
 }
-

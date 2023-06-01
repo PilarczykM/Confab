@@ -6,21 +6,20 @@ namespace Confab.Modules.Agendas.Domain.CallForPapers.Entities
     public class CallForPapers : AggregateRoot
     {
         public ConferenceId ConferenceId { get; private set; }
-        public DateTime From
-        {
-            get;
-            private set;
-        }
-        public DateTime To
-        {
-            get;
-            private set;
-        }
+        public DateTime From { get; private set; }
+        public DateTime To { get; private set; }
         public bool IsOpened { get; private set; }
 
         private CallForPapers() { }
 
-        public CallForPapers(AggregateId id, ConferenceId conferenceId, DateTime from, DateTime to, bool isOpened, int version = 0)
+        public CallForPapers(
+            AggregateId id,
+            ConferenceId conferenceId,
+            DateTime from,
+            DateTime to,
+            bool isOpened,
+            int version = 0
+        )
         {
             Id = id;
             ConferenceId = conferenceId;
@@ -30,16 +29,21 @@ namespace Confab.Modules.Agendas.Domain.CallForPapers.Entities
             Version = version;
         }
 
-        internal CallForPapers(AggregateId id)
-            => Id = id;
+        internal CallForPapers(AggregateId id) => Id = id;
 
-        public CallForPapers Create(AggregateId id, ConferenceId conferenceId, DateTime from, DateTime to)
+        public static CallForPapers Create(
+            AggregateId id,
+            ConferenceId conferenceId,
+            DateTime from,
+            DateTime to
+        )
         {
-            var callForPapers = new CallForPapers(id);
-
-            callForPapers.ConferenceId = conferenceId;
-            callForPapers.IsOpened = false;
-            callForPapers.Version = 0;
+            var callForPapers = new CallForPapers(id)
+            {
+                ConferenceId = conferenceId,
+                IsOpened = false,
+                Version = 0
+            };
             callForPapers.ChangeDateRange(from, to);
             callForPapers.CleaEvents();
 

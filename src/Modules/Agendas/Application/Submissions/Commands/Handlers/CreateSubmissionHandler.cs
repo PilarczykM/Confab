@@ -21,7 +21,8 @@ namespace Confab.Modules.Agendas.Application.Submissions.Commands.Handlers
             ISubmissionRepository submissionRepository,
             ISpeakerRepository speakerRepository,
             IDomainEventDispatcher domainEventDispatcher,
-            IEventMapper eventMapper)
+            IEventMapper eventMapper
+        )
         {
             _submissionRepository = submissionRepository;
             _speakerRepository = speakerRepository;

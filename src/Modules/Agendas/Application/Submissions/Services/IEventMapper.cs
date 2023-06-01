@@ -9,4 +9,3 @@ namespace Confab.Modules.Agendas.Application.Services
         IEnumerable<IMessage> MapAll(IEnumerable<IDomainEvent> events);
     }
 }
-

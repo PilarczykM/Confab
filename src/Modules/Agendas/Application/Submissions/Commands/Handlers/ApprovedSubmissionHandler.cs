@@ -16,10 +16,10 @@ namespace Confab.Modules.Agendas.Application.Submissions.Commands.Handlers
 
         public ApprovedSubmissionHandler(
             ISubmissionRepository submissionRepository,
-            IDomainEventDispatcher domainEventDispatcher
-,
+            IDomainEventDispatcher domainEventDispatcher,
             IEventMapper eventMapper,
-            IMessageBroker messageBroker)
+            IMessageBroker messageBroker
+        )
         {
             _submissionRepository = submissionRepository;
             _domainEventDispatcher = domainEventDispatcher;

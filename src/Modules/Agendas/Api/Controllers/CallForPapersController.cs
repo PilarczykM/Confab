@@ -13,22 +13,33 @@ namespace Confab.Modules.Agendas.Api.Controllers
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
 
-        public CallForPapersController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
+        public CallForPapersController(
+            ICommandDispatcher commandDispatcher,
+            IQueryDispatcher queryDispatcher
+        )
         {
             _commandDispatcher = commandDispatcher;
             _queryDispatcher = queryDispatcher;
         }
 
         [HttpGet]
-        public async Task<ActionResult<CallForPapersDto>> GetAsync(Guid conferenceId)
-            => OkOrNotFound(await _queryDispatcher.QueryAsync(new GetCallForPepers { ConferenceId = conferenceId }));
+        public async Task<ActionResult<CallForPapersDto>> GetAsync(Guid conferenceId) =>
+            OkOrNotFound(
+                await _queryDispatcher.QueryAsync(
+                    new GetCallForPepers { ConferenceId = conferenceId }
+                )
+            );
 
         [HttpPost]
         public async Task<ActionResult> CreateAsync(Guid conferenceId, CreateCallForPapers command)
         {
             command = command with { ConferenceId = conferenceId };
             await _commandDispatcher.SendAsync(command);
-            return CreatedAtAction(nameof(GetAsync), new { conferenceId = command.ConferenceId }, null);
+            return CreatedAtAction(
+                nameof(GetAsync),
+                new { conferenceId = command.ConferenceId },
+                null
+            );
         }
 
         [HttpPut("open")]
@@ -38,7 +49,6 @@ namespace Confab.Modules.Agendas.Api.Controllers
             return NoContent();
         }
 
-
         [HttpPut("close")]
         public async Task<ActionResult> CaloseAsync(Guid conferenceId)
         {
@@ -47,4 +57,3 @@ namespace Confab.Modules.Agendas.Api.Controllers
         }
     }
 }
-

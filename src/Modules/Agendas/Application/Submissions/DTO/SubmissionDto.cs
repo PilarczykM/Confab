@@ -9,6 +9,6 @@
         public int Level { get; set; }
         public string Status { get; set; }
         public IEnumerable<string> Tags { get; set; }
-        public IEnumerable<SpeakerDto> MyProperty { get; set; }
+        public IEnumerable<SpeakerDto> Speakers { get; set; }
     }
 }

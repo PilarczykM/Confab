@@ -22,7 +22,7 @@ namespace Confab.Modules.Agendas.Api.Controllers
         public async Task<ActionResult> CreateAsync(CreateSubmission command)
         {
             await _commandDispatcher.SendAsync(command);
-            return CreatedAtAction("GET", new { id = command.Id }, null);
+            return CreatedAtAction(nameof(GetAsync), new { id = command.Id }, null);
         }
 
         [HttpPut("{id:guid}/approve")]

@@ -15,7 +15,11 @@ namespace Confab.Shared.Infrastructure.Queries
             services.Scan(
                 s =>
                     s.FromAssemblies(assemblies)
-                        .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>)))
+                        .AddClasses(
+                            c =>
+                                c.AssignableTo(typeof(IQueryHandler<,>))
+                                    .WithoutAttribute<DecoratorAttribute>()
+                        )
                         .AsImplementedInterfaces()
                         .WithScopedLifetime()
             );

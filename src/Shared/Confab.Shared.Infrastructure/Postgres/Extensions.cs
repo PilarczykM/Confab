@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Confab.Shared.Abstractions.Commands;
+using Confab.Shared.Infrastructure.Postgres.Decorators;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Confab.Shared.Infrastructure.Postgres
@@ -9,6 +11,19 @@ namespace Confab.Shared.Infrastructure.Postgres
         {
             var options = services.GetOptions<PostgresOptions>(PostgresOptions.Postgres);
             services.AddSingleton(options);
+            services.AddSingleton(new UnitOfWorkTypeRegistry());
+
+            return services;
+        }
+
+        public static IServiceCollection AddTransactionalDecorators(
+            this IServiceCollection services
+        )
+        {
+            services.TryDecorate(
+                typeof(ICommandHandler<>),
+                typeof(TransactionalCommandHandlerDecorator<>)
+            );
 
             return services;
         }
@@ -21,6 +36,21 @@ namespace Confab.Shared.Infrastructure.Postgres
 
             // EF Core + Npgsql issue
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+            return services;
+        }
+
+        public static IServiceCollection AddUnitOfWork<TUnitOfWork, TImplementation>(
+            this IServiceCollection services
+        )
+            where TUnitOfWork : class, IUnitOfWork
+            where TImplementation : class, TUnitOfWork
+        {
+            services.AddScoped<TUnitOfWork, TImplementation>();
+            services.AddScoped<IUnitOfWork, TImplementation>();
+
+            using var serviceProvider = services.BuildServiceProvider();
+            serviceProvider.GetRequiredService<UnitOfWorkTypeRegistry>().Register<TUnitOfWork>();
 
             return services;
         }

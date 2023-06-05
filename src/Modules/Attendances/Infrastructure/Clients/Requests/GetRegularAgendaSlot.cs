@@ -1,6 +1,6 @@
 ﻿namespace Confab.Modules.Attendances.Infrastructure.Clients.Requests
 {
-    public class GetRegularAgendaSlot
+    internal class GetRegularAgendaSlot
     {
         public Guid AgendaItemId { get; set; }
     }

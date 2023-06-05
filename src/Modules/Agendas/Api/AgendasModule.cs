@@ -1,7 +1,11 @@
 ﻿using Confab.Modules.Agendas.Application;
+using Confab.Modules.Agendas.Application.Agendas.DTO;
+using Confab.Modules.Agendas.Application.Agendas.Queries;
 using Confab.Modules.Agendas.Domain;
 using Confab.Modules.Agendas.Infrastructure;
 using Confab.Shared.Abstractions.Module;
+using Confab.Shared.Abstractions.Queries;
+using Confab.Shared.Infrastructure.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +29,11 @@ namespace Confab.Modules.Agendas.Api
             services.AddDomain().AddApplication().AddInfrastructure();
         }
 
-        public void Use(IApplicationBuilder app) { }
+        public void Use(IApplicationBuilder app)
+        {
+            app.UseModuleRequest()
+                .Subscribe<GetRegularAgendaSlot, RegularAgendaSlotDto>("/agendas/slots/reqular/get",
+                (query, serviceProvider) => serviceProvider.GetRequiredService<IQueryDispatcher>().QueryAsync(query));
+        }
     }
 }

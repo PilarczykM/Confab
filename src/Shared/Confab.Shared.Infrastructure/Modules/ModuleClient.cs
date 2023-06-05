@@ -30,6 +30,24 @@ namespace Confab.Shared.Infrastructure.Modules
             await Task.WhenAll(tasks);
         }
 
+        public async Task<TResult> SendAsync<TResult>(string path, object request)
+            where TResult : class
+        {
+            var registration =
+                _moduleRegistry.GetRequestRegistration(path)
+                ?? throw new InvalidOperationException(
+                    $"No action has been defined for path: '{path}'"
+                );
+
+            var reciverRequest = TranslateType(request, registration.RequestType);
+            var result = await registration.Action(reciverRequest);
+
+            return result is null ? null : TranslateType<TResult>(result);
+        }
+
+        private T TranslateType<T>(object value) =>
+            _moduleSerializer.Deserialize<T>(_moduleSerializer.Serialize(value));
+
         private object TranslateType(object value, Type type) =>
             _moduleSerializer.Deserialize(_moduleSerializer.Serialize(value), type);
     }

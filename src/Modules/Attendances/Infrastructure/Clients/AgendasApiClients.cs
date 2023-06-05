@@ -14,10 +14,11 @@ namespace Confab.Modules.Attendances.Infrastructure.Clients
             _moduleClient = moduleClient;
         }
 
-        public Task<IEnumerable<AgendaTrackDto>> GetAgendaAsync(Guid conferenceId)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<AgendaTrackDto>> GetAgendaAsync(Guid conferenceId) =>
+            _moduleClient.SendAsync<IEnumerable<AgendaTrackDto>>(
+                "agendas/agendas/get",
+                new GetAgenda { ConferenceId = conferenceId }
+            );
 
         public Task<RegularAgendaSlotDto> GetRegularAgendaSlotAsync(Guid id) =>
             _moduleClient.SendAsync<RegularAgendaSlotDto>(

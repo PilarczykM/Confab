@@ -15,7 +15,11 @@ namespace Confab.Shared.Infrastructure.Events
             services.Scan(
                 s =>
                     s.FromAssemblies(assemblies)
-                        .AddClasses(c => c.AssignableTo(typeof(IEventHandler<>)))
+                        .AddClasses(
+                            c =>
+                                c.AssignableTo(typeof(IEventHandler<>))
+                                    .WithoutAttribute<DecoratorAttribute>()
+                        )
                         .AsImplementedInterfaces()
                         .WithScopedLifetime()
             );

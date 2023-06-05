@@ -15,7 +15,11 @@ namespace Confab.Shared.Infrastructure.Commands
             services.Scan(
                 s =>
                     s.FromAssemblies(assemblies)
-                        .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
+                        .AddClasses(
+                            c =>
+                                c.AssignableTo(typeof(ICommandHandler<>))
+                                    .WithoutAttribute<DecoratorAttribute>()
+                        )
                         .AsImplementedInterfaces()
                         .WithScopedLifetime()
             );

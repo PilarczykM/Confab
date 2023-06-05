@@ -7,4 +7,12 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Infrastructure\Confab.Modules.Attendances.Infrastructure.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Update="module.attendances.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="module.attendances.development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>

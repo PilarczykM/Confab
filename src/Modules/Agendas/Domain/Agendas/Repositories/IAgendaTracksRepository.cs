@@ -13,4 +13,3 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Repositories
         Task DeleteAsync(AgendaTrack agendaTrack);
     }
 }
-

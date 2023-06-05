@@ -4,7 +4,8 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Exceptions
 {
     public class ConflictingAgendaSlotsException : ConfabException
     {
-        public ConflictingAgendaSlotsException(DateTime from, DateTime to) : base($"There is slot clonflicting with date range: {from} | {to}")
+        public ConflictingAgendaSlotsException(DateTime from, DateTime to)
+            : base($"There is slot clonflicting with date range: {from} | {to}")
         {
             From = from;
             To = to;
@@ -14,4 +15,3 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Exceptions
         public DateTime To { get; }
     }
 }
-

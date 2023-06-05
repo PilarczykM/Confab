@@ -7,14 +7,16 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Entities
     {
         public string Placeholder { get; private set; }
 
-        public PlaceholderAgendaSlot(EntityId id, DateTime from, DateTime to, string placeholder) : base(id, from, to)
+        public PlaceholderAgendaSlot(EntityId id, DateTime from, DateTime to, string placeholder)
+            : base(id, from, to)
         {
             Placeholder = placeholder;
         }
 
         private PlaceholderAgendaSlot() { }
 
-        internal PlaceholderAgendaSlot(EntityId id) : base(id) { }
+        internal PlaceholderAgendaSlot(EntityId id)
+            : base(id) { }
 
         internal static PlaceholderAgendaSlot Create(EntityId id, DateTime from, DateTime to)
         {
@@ -35,4 +37,3 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Entities
         }
     }
 }
-

@@ -5,8 +5,7 @@ namespace Confab.Modules.Agendas.Domain
 {
     public static class Extensions
     {
-        public static IServiceCollection AddDomain(this IServiceCollection services)
-            => services.AddScoped<IAgendaTracksDomainService, AgendaTracksDomainService>();
+        public static IServiceCollection AddDomain(this IServiceCollection services) =>
+            services.AddScoped<IAgendaTracksDomainService, AgendaTracksDomainService>();
     }
 }
-

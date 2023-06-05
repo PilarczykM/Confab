@@ -5,7 +5,10 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Services
 {
     public interface IAgendaTracksDomainService
     {
-        Task AssignAgendaItemAsync(AgendaTrack agendaTrack, EntityId agendaSlotId, EntityId agendaItemId);
+        Task AssignAgendaItemAsync(
+            AgendaTrack agendaTrack,
+            EntityId agendaSlotId,
+            EntityId agendaItemId
+        );
     }
 }
-

@@ -6,17 +6,18 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Entities
     public sealed class AgendaTrack : AggregateRoot
     {
         public ConferenceId ConferenceId { get; private set; }
-        public string Name
-        {
-            get;
-            private set;
-        }
+        public string Name { get; private set; }
         public IEnumerable<AgendaSlot> Slots => _slots;
 
         private readonly ICollection<AgendaSlot> _slots = new List<AgendaSlot>();
 
-        public AgendaTrack(AggregateId id, ConferenceId conferenceId, string name, ICollection<AgendaSlot> slots,
-            int version = 0)
+        public AgendaTrack(
+            AggregateId id,
+            ConferenceId conferenceId,
+            string name,
+            ICollection<AgendaSlot> slots,
+            int version = 0
+        )
         {
             Name = name;
             _slots = slots.ToHashSet();
@@ -121,7 +122,9 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Entities
 
         private void ValidateTimeConflict(DateTime from, DateTime to)
         {
-            var hasConflict = _slots.Any(s => (s.From <= from && s.To >= from) || (s.From <= to && s.To >= to));
+            var hasConflict = _slots.Any(
+                s => (s.From <= from && s.To >= from) || (s.From <= to && s.To >= to)
+            );
 
             if (hasConflict)
             {

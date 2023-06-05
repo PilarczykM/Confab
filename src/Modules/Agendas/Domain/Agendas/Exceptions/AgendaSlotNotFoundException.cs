@@ -4,7 +4,8 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Exceptions
 {
     public class AgendaSlotNotFoundException : ConfabException
     {
-        public AgendaSlotNotFoundException(Guid id) : base($"Agenda slot with ID: '{id}' was not found.")
+        public AgendaSlotNotFoundException(Guid id)
+            : base($"Agenda slot with ID: '{id}' was not found.")
         {
             Id = id;
         }
@@ -12,4 +13,3 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Exceptions
         public Guid Id { get; }
     }
 }
-

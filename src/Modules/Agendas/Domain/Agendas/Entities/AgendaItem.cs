@@ -18,8 +18,16 @@ public class AgendaItem : AggregateRoot
 
     public AgendaSlot AgendaSlot { get; private set; }
 
-    public AgendaItem(AggregateId id, ConferenceId conferenceId, string title, string description,
-        int level, IEnumerable<string> tags, ICollection<Speaker> speakers, int version = 0)
+    public AgendaItem(
+        AggregateId id,
+        ConferenceId conferenceId,
+        string title,
+        string description,
+        int level,
+        IEnumerable<string> tags,
+        ICollection<Speaker> speakers,
+        int version = 0
+    )
     {
         Id = id;
         ConferenceId = conferenceId;
@@ -31,13 +39,20 @@ public class AgendaItem : AggregateRoot
         Version = version;
     }
 
-    internal AgendaItem(AggregateId id, ConferenceId conferenceId)
-        => (Id, ConferenceId) = (id, conferenceId);
+    internal AgendaItem(AggregateId id, ConferenceId conferenceId) =>
+        (Id, ConferenceId) = (id, conferenceId);
 
     private AgendaItem() { }
 
-    public static AgendaItem Create(AggregateId id, ConferenceId conferenceId, string title, string description,
-        int level, IEnumerable<string> tags, ICollection<Speaker> speakers)
+    public static AgendaItem Create(
+        AggregateId id,
+        ConferenceId conferenceId,
+        string title,
+        string description,
+        int level,
+        IEnumerable<string> tags,
+        ICollection<Speaker> speakers
+    )
     {
         var agendaItem = new AgendaItem(id, conferenceId);
 
@@ -101,4 +116,3 @@ public class AgendaItem : AggregateRoot
         IncrementVersion();
     }
 }
-

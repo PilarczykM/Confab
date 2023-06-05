@@ -10,8 +10,8 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Events.Handlers
     {
         private readonly IAgendaItemsRepository _agendaItemsRepository;
 
-        public SubmissionApprovedHandler(IAgendaItemsRepository agendaItemsRepository)
-            => _agendaItemsRepository = agendaItemsRepository;
+        public SubmissionApprovedHandler(IAgendaItemsRepository agendaItemsRepository) =>
+            _agendaItemsRepository = agendaItemsRepository;
 
         public async Task HandleAsync(SubmissionStatusChanged domainEvent)
         {
@@ -27,11 +27,17 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Events.Handlers
                 return;
             }
 
-            agendaItem = AgendaItem.Create(submission.Id, submission.ConferenceId, submission.Title,
-                submission.Description, submission.Level, submission.Tags, submission.Speakers.ToList());
+            agendaItem = AgendaItem.Create(
+                submission.Id,
+                submission.ConferenceId,
+                submission.Title,
+                submission.Description,
+                submission.Level,
+                submission.Tags,
+                submission.Speakers.ToList()
+            );
 
             await _agendaItemsRepository.AddAsync(agendaItem);
         }
     }
 }
-

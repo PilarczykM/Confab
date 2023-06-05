@@ -8,18 +8,20 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Entities
         public int? ParticipantsLimit { get; private set; }
         public AgendaItem AgendaItem { get; private set; }
 
-        public RegularAgendaSlot(EntityId id, DateTime from, DateTime to, AgendaItem agendaItem) : base(id, from, to)
-            => AgendaItem = agendaItem;
+        public RegularAgendaSlot(EntityId id, DateTime from, DateTime to, AgendaItem agendaItem)
+            : base(id, from, to) => AgendaItem = agendaItem;
 
-        private RegularAgendaSlot()
-        {
-        }
+        private RegularAgendaSlot() { }
 
-        internal RegularAgendaSlot(EntityId id) : base(id)
-        {
-        }
+        internal RegularAgendaSlot(EntityId id)
+            : base(id) { }
 
-        internal static RegularAgendaSlot Create(EntityId id, DateTime from, DateTime to, int? participantsLimit)
+        internal static RegularAgendaSlot Create(
+            EntityId id,
+            DateTime from,
+            DateTime to,
+            int? participantsLimit
+        )
         {
             var regularAgendaSlot = new RegularAgendaSlot(id);
             regularAgendaSlot.ChangeDateRange(from, to);
@@ -28,8 +30,7 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Entities
             return regularAgendaSlot;
         }
 
-        internal void ChangeAgendaItem(AgendaItem agendaItem)
-            => AgendaItem = agendaItem;
+        internal void ChangeAgendaItem(AgendaItem agendaItem) => AgendaItem = agendaItem;
 
         internal void ChangeParticipantsLimit(int? participantsLimit)
         {
@@ -42,4 +43,3 @@ namespace Confab.Modules.Agendas.Domain.Agendas.Entities
         }
     }
 }
-

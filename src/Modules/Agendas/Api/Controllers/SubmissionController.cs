@@ -22,6 +22,7 @@ namespace Confab.Modules.Agendas.Api.Controllers
         public async Task<ActionResult> CreateAsync(CreateSubmission command)
         {
             await _commandDispatcher.SendAsync(command);
+            AddResourceIdHeader(command.Id);
             return CreatedAtAction(nameof(GetAsync), new { id = command.Id }, null);
         }
 

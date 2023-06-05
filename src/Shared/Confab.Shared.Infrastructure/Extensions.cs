@@ -83,6 +83,7 @@ namespace Confab.Shared.Infrastructure
                 sp => sp.GetRequiredService<IContextFactory>().Create()
             );
 
+            services.AddMemoryCache();
             services.AddSingleton<IClock, UtcClock>();
             services.AddModuleRequests(assemblies);
             services.AddMessaging();

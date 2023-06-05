@@ -1,7 +1,9 @@
 ﻿using Confab.Modules.Tickets.Core.DTO;
 using Confab.Modules.Tickets.Core.Entities;
+using Confab.Modules.Tickets.Core.Events;
 using Confab.Modules.Tickets.Core.Exceptions;
 using Confab.Modules.Tickets.Core.Repositories;
+using Confab.Shared.Abstractions.Messaging;
 using Confab.Shared.Abstractions.Time;
 using Microsoft.Extensions.Logging;
 
@@ -15,6 +17,7 @@ namespace Confab.Modules.Tickets.Core.Services
         private readonly ITicketGenereator _ticketGenereator;
         private readonly IClock _clock;
         private readonly ILogger<TicketService> _logger;
+        private readonly IMessageBroker _messageBroker;
 
         public TicketService(
             IConferenceRepository conferenceRepository,
@@ -23,7 +26,8 @@ namespace Confab.Modules.Tickets.Core.Services
             ITicketGenereator ticketGenereator,
             IClock clock,
             ILogger<TicketService> logger
-        )
+,
+            IMessageBroker messageBroker)
         {
             _conferenceRepository = conferenceRepository;
             _ticketSaleRepository = ticketSaleRepository;
@@ -31,6 +35,7 @@ namespace Confab.Modules.Tickets.Core.Services
             _ticketGenereator = ticketGenereator;
             _clock = clock;
             _logger = logger;
+            _messageBroker = messageBroker;
         }
 
         public async Task<IEnumerable<TicketDto>> GetForUserAsync(Guid userId)
@@ -87,6 +92,7 @@ namespace Confab.Modules.Tickets.Core.Services
                 $"Ticket with ID: '{ticket.Id}' was generated for the conference: "
                     + $"'{conferenceId}' by user: '{userId}'."
             );
+            await _messageBroker.PublishAsync(new TicketPurchased(ticket.Id, conferenceId, userId));
         }
 
         private async Task PurchaseAvailableAsync(
@@ -111,6 +117,7 @@ namespace Confab.Modules.Tickets.Core.Services
                 $"Ticket with ID: '{ticket.Id}' was purchased for the conference: "
                     + $"'{conferenceId}' by user: '{userId}'."
             );
+            await _messageBroker.PublishAsync(new TicketPurchased(ticket.Id, conferenceId, userId));
         }
     }
 }

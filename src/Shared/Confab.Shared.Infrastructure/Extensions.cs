@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using Confab.Shared.Abstractions.Context;
 using Confab.Shared.Abstractions.Module;
+using Confab.Shared.Abstractions.Storage;
 using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Auth;
@@ -14,6 +15,7 @@ using Confab.Shared.Infrastructure.Messaging;
 using Confab.Shared.Infrastructure.Modules;
 using Confab.Shared.Infrastructure.Queries;
 using Confab.Shared.Infrastructure.Services;
+using Confab.Shared.Infrastructure.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -74,6 +76,7 @@ namespace Confab.Shared.Infrastructure
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "Confab API", Version = "v1", });
             });
 
+            services.AddSingleton<IRequestStorage, RequestStorage>();
             services.AddSingleton<IContextFactory, ContextFactory>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IContext>(

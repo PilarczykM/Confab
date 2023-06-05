@@ -10,16 +10,17 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Queries.Handlers
     internal class GetCallForPapersHandler : IQueryHandler<GetCallForPepers, CallForPapersDto>
     {
         private readonly DbSet<CallForPapers> _callForPapers;
+
         public GetCallForPapersHandler(AgendasDbContext context)
         {
             _callForPapers = context.CallForPapers;
         }
 
-        public async Task<CallForPapersDto> HandleAsync(GetCallForPepers query)
-            => await _callForPapers
-            .AsNoTracking()
-            .Where(cfp => cfp.ConferenceId == query.ConferenceId)
-            .Select(cfp => cfp.AsDto())
-            .SingleOrDefaultAsync();
+        public async Task<CallForPapersDto> HandleAsync(GetCallForPepers query) =>
+            await _callForPapers
+                .AsNoTracking()
+                .Where(cfp => cfp.ConferenceId == query.ConferenceId)
+                .Select(cfp => cfp.AsDto())
+                .SingleOrDefaultAsync();
     }
 }

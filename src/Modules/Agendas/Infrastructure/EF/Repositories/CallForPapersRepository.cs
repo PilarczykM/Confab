@@ -14,7 +14,6 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Repositories
         {
             _context = context;
             _callForPapers = context.CallForPapers;
-
         }
 
         public async Task AddAsync(CallForPapers callForPapers)
@@ -23,17 +22,16 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> ExistsAsync(ConferenceId conferenceId)
-            => await _callForPapers.AnyAsync(x => x.ConferenceId == conferenceId);
+        public async Task<bool> ExistsAsync(ConferenceId conferenceId) =>
+            await _callForPapers.AnyAsync(x => x.ConferenceId == conferenceId);
 
-        public async Task<CallForPapers> GetAsync(ConferenceId conferenceId)
-            => await _callForPapers.SingleOrDefaultAsync(x => x.ConferenceId == conferenceId);
+        public async Task<CallForPapers> GetAsync(ConferenceId conferenceId) =>
+            await _callForPapers.SingleOrDefaultAsync(x => x.ConferenceId == conferenceId);
 
         public async Task UpdateAsync(CallForPapers callForPapers)
         {
             _callForPapers.Update(callForPapers);
             await _context.SaveChangesAsync();
         }
-
     }
 }

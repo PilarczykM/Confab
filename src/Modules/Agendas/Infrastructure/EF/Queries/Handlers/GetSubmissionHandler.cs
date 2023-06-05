@@ -9,18 +9,16 @@ namespace Confab.Modules.Agendas.Infrastructure.EF.Queries.Handlers
 {
     internal class GetSubmissionHandler : IQueryHandler<GetSubmission, SubmissionDto>
     {
-        private DbSet<Submission> _submission;
+        private readonly DbSet<Submission> _submission;
 
-        public GetSubmissionHandler(AgendasDbContext context)
-            => _submission = context.Submissions;
+        public GetSubmissionHandler(AgendasDbContext context) => _submission = context.Submissions;
 
-        public async Task<SubmissionDto> HandleAsync(GetSubmission query)
-            => await _submission
-            .AsNoTracking()
-            .Where(x => x.Id.Equals(query.Id))
-            .Include(x => x.Speakers)
-            .Select(x => x.AsDto()).SingleOrDefaultAsync();
-
+        public async Task<SubmissionDto> HandleAsync(GetSubmission query) =>
+            await _submission
+                .AsNoTracking()
+                .Where(x => x.Id.Equals(query.Id))
+                .Include(x => x.Speakers)
+                .Select(x => x.AsDto())
+                .SingleOrDefaultAsync();
     }
 }
-

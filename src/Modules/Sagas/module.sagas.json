@@ -1,0 +1,8 @@
+﻿{
+  "sagas": {
+    "module": {
+      "name": "Sagas",
+      "enabled": true
+    }
+  }
+}

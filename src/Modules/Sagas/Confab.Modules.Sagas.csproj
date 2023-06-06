@@ -5,14 +5,17 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>
-		<Content Include="module.users.development.json">
+		<Content Include="module.sagas.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="module.users.json">
+		<Content Include="module.sagas.development.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Core\Confab.Modules.Users.Core.csproj" />
+		<ProjectReference Include="..\..\Shared\Confab.Shared.Abstractions\Confab.Shared.Abstractions.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Chronicle_" Version="3.2.1" />
 	</ItemGroup>
 </Project>

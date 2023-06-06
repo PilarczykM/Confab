@@ -1,8 +1,0 @@
-﻿{
-  "saga": {
-    "module": {
-      "name": "Saga - DEV",
-      "enabled": true
-    }
-  }
-}

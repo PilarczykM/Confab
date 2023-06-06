@@ -94,6 +94,7 @@ namespace Confab.Shared.Infrastructure
             services.AddDomainEvents(assemblies);
             services.AddCommands(assemblies);
             services.AddQueries(assemblies);
+            services.AddPostgres();
             services.AddTransactionalDecorators();
             services.AddHostedService<AppInitializator>();
             services

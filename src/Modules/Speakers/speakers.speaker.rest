@@ -1,5 +1,7 @@
 @url = http://localhost:5000/speakers-module
-@id = 725a5307-8108-4c69-9ca6-297d6fd3bdb3
+@id = fa9251e9-b74e-4baf-862d-62ea3adb3b82
+
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZmNmZDg1Ny1hY2FmLTQzYWEtYTUyZi1lMjRhNmI2YjgwZmIiLCJ1bmlxdWVfbmFtZSI6IjlmY2ZkODU3LWFjYWYtNDNhYS1hNTJmLWUyNGE2YjZiODBmYiIsImp0aSI6IjBmMGFjNWMzLTBhY2MtNDJjOS05OWU2LWYyODA0ZWE3YmRmOCIsImlhdCI6IjE2ODYwNjUwMDAwNzIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwicGVybWlzc2lvbnMiOlsiY29uZmVyZW5jZXMiLCJob3N0cyIsInNwZWFrZXJzIiwidGlja2V0cyIsInVzZXJzIl0sIm5iZiI6MTY4NjA2NTAwMCwiZXhwIjoxNjg2MTAxMDAwLCJpc3MiOiJjb25mYWIifQ.YCBK12hDd_YbPghXxQy3EsaUDF6FEC6hmQE9k4gwds4
 
 # REMEMBER TO SignIn and use access token
 
@@ -15,6 +17,7 @@ Get {{url}}/speakers/{{id}}
 ###
 POST {{url}}/speakers
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
     "Email": "john.doe@gmail.com",
@@ -27,11 +30,12 @@ Content-Type: application/json
 ###
 PUT {{url}}/speakers/
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
     "id": "725a5307-8108-4c69-9ca6-297d6fd3bdb3",
     "Email": "john.doe@gmail.com",
-    "FullName": "John Doe",
+    "FullName": "John Doe15",
     "Bio": "John Doe from past 2",
     "AvatarUrl": "www.avatar.com"
 }

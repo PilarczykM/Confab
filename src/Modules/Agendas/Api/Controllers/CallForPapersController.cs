@@ -3,13 +3,16 @@ using Confab.Modules.Agendas.Application.CallForPapers.DTO;
 using Confab.Modules.Agendas.Application.CallForPapers.Queries;
 using Confab.Shared.Abstractions.Commands;
 using Confab.Shared.Abstractions.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Confab.Modules.Agendas.Api.Controllers
 {
     [Route(AgendasModule.BasePath + "/conferences/{conferenceId:guid}/cfp")]
+    [Authorize(Policy)]
     internal class CallForPapersController : BaseController
     {
+        private const string Policy = "cfp";
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
 

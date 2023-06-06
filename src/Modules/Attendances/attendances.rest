@@ -1,0 +1,18 @@
+@url = http://localhost:5000/attendances-module
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZmNmZDg1Ny1hY2FmLTQzYWEtYTUyZi1lMjRhNmI2YjgwZmIiLCJ1bmlxdWVfbmFtZSI6IjlmY2ZkODU3LWFjYWYtNDNhYS1hNTJmLWUyNGE2YjZiODBmYiIsImp0aSI6IjY5NGQ3ZGI5LWNjMGYtNGUxNC1iNDE0LWFiNjQwNGQ2MzAxNiIsImlhdCI6IjE2ODYwNjc5NjI2OTYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwicGVybWlzc2lvbnMiOlsiY29uZmVyZW5jZXMiLCJob3N0cyIsInNwZWFrZXJzIiwidGlja2V0cyIsInVzZXJzIl0sIm5iZiI6MTY4NjA2Nzk2MiwiZXhwIjoxNjg2MTAzOTYyLCJpc3MiOiJjb25mYWIifQ.576nyrVdP9GL0He0P03Svx0i2FDCnrblHGEu8mr-bUc
+
+@eventId = bddebff7-7aab-4d6b-bb1e-be6a591bdbe3
+@conferenceId = bddebff7-7aab-4d6b-bb1e-be6a591bdbe3
+
+###
+GET {{url}}/attendances/{{conferenceId}}
+Authorization: Bearer {{accessToken}}
+
+
+### Attend an event
+POST {{url}}/attendances/events/{{eventId}}/attend
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+}

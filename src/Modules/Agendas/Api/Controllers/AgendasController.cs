@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Confab.Modules.Agendas.Api.Controllers
 {
-    [Route(AgendasModule.BasePath + "/agendas/{conferenceId:guid}")]
+    [Route(AgendasModule.BasePath + "/agendas/{conferenceId:guid}/")]
     [Authorize(Policy)]
     internal class AgendasController : BaseController
     {

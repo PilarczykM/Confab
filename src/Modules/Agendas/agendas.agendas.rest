@@ -1,0 +1,31 @@
+@url = http://localhost:5000/agendas-module
+
+@conferenceId = "d9921cc0-55cf-427a-85a5-244424fb6063"
+@id = "d9921cc0-55cf-427a-85a5-244424fb6063"
+
+### TODO
+
+# Agendas - Call for papers get
+###
+Get {{url}}/agendas/{{conferenceId}}/tracks/{{id}}
+
+# Agendas - Call for papers post
+###
+POST {{url}}/conferences/{{conferenceId}}/cfp
+
+{
+}
+
+# Agendas - Call for papers open
+###
+PUT {{url}}/conferences/{{conferenceId}}/cfp/open
+
+{
+}
+
+# Agendas - Call for papers close
+###
+PUT {{url}}/conferences/{{conferenceId}}/cfp/close
+
+{
+}

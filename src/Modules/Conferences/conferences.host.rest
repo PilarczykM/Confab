@@ -25,6 +25,7 @@ Content-Type: application/json
 # Conferences - Host UPDATE
 ###
 PUT {{url}}/host/{{id}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -35,3 +36,4 @@ Content-Type: application/json
 # Conferences - Host DELETE
 ###
 DELETE {{url}}/host/{{id}}
+Authorization: Bearer {{accessToken}}

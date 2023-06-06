@@ -3,12 +3,14 @@ using Confab.Modules.Agendas.Application.Submissions.DTO;
 using Confab.Modules.Agendas.Application.Submissions.Queries;
 using Confab.Shared.Abstractions.Commands;
 using Confab.Shared.Abstractions.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Confab.Modules.Agendas.Api.Controllers
 {
     internal class SubmissionController : BaseController
     {
+        private const string Policy = "submissions";
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
 
@@ -18,14 +20,26 @@ namespace Confab.Modules.Agendas.Api.Controllers
             _queryDispatcher = queryDispatcher;
         }
 
+        [Authorize(Policy)]
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<SubmissionDto>> GetAsync(Guid id)
+            => OkOrNotFound(await _queryDispatcher.QueryAsync(new GetSubmission { Id = id }));
+
+        [Authorize(Policy)]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SubmissionDto>>> BrowseAsync([FromQuery] BrowseSubmissions query)
+            => Ok(await _queryDispatcher.QueryAsync(query));
+
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> CreateAsync(CreateSubmission command)
         {
             await _commandDispatcher.SendAsync(command);
             AddResourceIdHeader(command.Id);
-            return CreatedAtAction(nameof(GetAsync), new { id = command.Id }, null);
+            return CreatedAtAction("Get", new { id = command.Id }, null);
         }
 
+        [Authorize(Policy)]
         [HttpPut("{id:guid}/approve")]
         public async Task<ActionResult> ApproveAsync(Guid id)
         {
@@ -33,15 +47,12 @@ namespace Confab.Modules.Agendas.Api.Controllers
             return NoContent();
         }
 
+        [Authorize(Policy)]
         [HttpPut("{id:guid}/reject")]
         public async Task<ActionResult> RejectAsync(Guid id)
         {
             await _commandDispatcher.SendAsync(new RejectedSubmission(id));
             return NoContent();
         }
-
-        [HttpGet("{id:guid}")]
-        public async Task<ActionResult<SubmissionDto>> GetAsync(Guid id)
-            => OkOrNotFound(await _queryDispatcher.QueryAsync(new GetSubmission { Id = id }));
     }
 }

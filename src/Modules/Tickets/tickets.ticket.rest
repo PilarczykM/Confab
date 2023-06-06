@@ -1,0 +1,17 @@
+@url = http://localhost:5000/tickets-module
+@conferenceId = c3e173ba-17e5-418d-bcd1-797bf823f8a2
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZmNmZDg1Ny1hY2FmLTQzYWEtYTUyZi1lMjRhNmI2YjgwZmIiLCJ1bmlxdWVfbmFtZSI6IjlmY2ZkODU3LWFjYWYtNDNhYS1hNTJmLWUyNGE2YjZiODBmYiIsImp0aSI6ImVlYzJkMzBiLWMwYzAtNDgwYy04NWYyLWNlYjFkZjUyNzY5OCIsImlhdCI6IjE2ODYwNjQ1NDYwMDMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwicGVybWlzc2lvbnMiOlsiY29uZmVyZW5jZXMiLCJob3N0cyIsInNwZWFrZXJzIiwidGlja2V0cyIsInVzZXJzIl0sIm5iZiI6MTY4NjA2NDU0NiwiZXhwIjoxNjg2MTAwNTQ2LCJpc3MiOiJjb25mYWIifQ.ucEFtyQ1gCXBLaAA7GGgwwvwG8Sv-ChGt-A1LQuPHJA
+
+# Tickets - Tickets GET ALL
+###
+Get {{url}}/tickets
+Authorization: Bearer {{accessToken}}
+
+# Tickets - Conference purchase ticket
+###
+Post {{url}}/tickets/conferences/{{conferenceId}}/purchase
+Authorization: Bearer {{accessToken}}
+
+{
+    "id": "{{conferenceId}}"
+}

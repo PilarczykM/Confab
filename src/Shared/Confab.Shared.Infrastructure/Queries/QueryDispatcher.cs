@@ -15,18 +15,12 @@ namespace Confab.Shared.Infrastructure.Queries
         public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
         {
             using var scope = _serviceProvider.CreateScope();
+            var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
+            var handler = scope.ServiceProvider.GetRequiredService(handlerType);
 
-            var handlerType = typeof(IQueryHandler<,>).MakeGenericType(
-                query.GetType(),
-                typeof(TResult)
-            );
-
-            var handler = _serviceProvider.GetRequiredService(handlerType);
-
-            return await (Task<TResult>)
-                handlerType
-                    .GetMethod(nameof(IQueryHandler<IQuery<TResult>, TResult>.HandleAsync))
-                    ?.Invoke(handler, new[] { query });
+            return await (Task<TResult>)handlerType
+                .GetMethod(nameof(IQueryHandler<IQuery<TResult>, TResult>.HandleAsync))
+                ?.Invoke(handler, new[] { query });
         }
     }
 }

@@ -12,4 +12,3 @@ namespace Confab.Modules.Sagas
         }
     }
 }
-

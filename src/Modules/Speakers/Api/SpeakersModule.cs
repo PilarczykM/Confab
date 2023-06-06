@@ -26,12 +26,15 @@ namespace Confab.Modules.Speakers.Api
         public void Use(IApplicationBuilder app)
         {
             app.UseModuleRequest()
-                .Subscribe<SpeakerDto, object>("speakers/create", async (dto, sp) =>
-                {
-                    var service = sp.GetRequiredService<ISpeakersService>();
-                    await service.CreateAsync(dto);
-                    return null;
-                });
+                .Subscribe<SpeakerDto, object>(
+                    "speakers/create",
+                    async (dto, sp) =>
+                    {
+                        var service = sp.GetRequiredService<ISpeakersService>();
+                        await service.CreateAsync(dto);
+                        return null;
+                    }
+                );
         }
     }
 }

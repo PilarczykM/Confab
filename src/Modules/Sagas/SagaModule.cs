@@ -15,9 +15,6 @@ namespace Confab.Modules.Sagas
             services.AddSaga();
         }
 
-        public void Use(IApplicationBuilder app)
-        {
-        }
+        public void Use(IApplicationBuilder app) { }
     }
 }
-

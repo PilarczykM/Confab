@@ -11,12 +11,11 @@ internal class InviteSpeakerSaga
         ISagaAction<SpeakerCreated>,
         ISagaAction<SignedIn>
 {
-
     private readonly IModuleClient _moduleClient;
     private readonly IMessageBroker _messageBroker;
 
-    public override SagaId ResolveId(object message, ISagaContext context)
-        => message switch
+    public override SagaId ResolveId(object message, ISagaContext context) =>
+        message switch
         {
             SignedUp m => m.UserId.ToString(),
             SignedIn m => m.UserId.ToString(),
@@ -38,13 +37,16 @@ internal class InviteSpeakerSaga
             Data.Email = email;
             Data.FullName = fullName;
 
-            await _moduleClient.SendAsync("speakers/create", new
-            {
-                Id = userId,
-                Email = email,
-                FullName = fullName,
-                Bio = "Lorem Ipsum"
-            });
+            await _moduleClient.SendAsync(
+                "speakers/create",
+                new
+                {
+                    Id = userId,
+                    Email = email,
+                    FullName = fullName,
+                    Bio = "Lorem Ipsum"
+                }
+            );
 
             return;
         }
@@ -67,14 +69,13 @@ internal class InviteSpeakerSaga
         }
     }
 
-    Task ISagaAction<SignedIn>.CompensateAsync(SignedIn message, ISagaContext context)
-        => Task.CompletedTask;
+    Task ISagaAction<SignedIn>.CompensateAsync(SignedIn message, ISagaContext context) =>
+        Task.CompletedTask;
 
-    Task ISagaAction<SignedUp>.CompensateAsync(SignedUp message, ISagaContext context)
-        => Task.CompletedTask;
+    Task ISagaAction<SignedUp>.CompensateAsync(SignedUp message, ISagaContext context) =>
+        Task.CompletedTask;
 
-    public Task CompensateAsync(SpeakerCreated message, ISagaContext context)
-        => Task.CompletedTask;
+    public Task CompensateAsync(SpeakerCreated message, ISagaContext context) => Task.CompletedTask;
 
     internal class SagaData
     {

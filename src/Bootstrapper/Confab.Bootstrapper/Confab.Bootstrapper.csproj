@@ -30,6 +30,9 @@
 		<ProjectReference Include="..\..\Modules\Attendances\Api\Confab.Modules.Attendances.Api.csproj">
 		  <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
 		</ProjectReference>
+		<ProjectReference Include="..\..\Modules\Saga\Confab.Modules.Saga.csproj">
+		  <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">

@@ -1,0 +1,28 @@
+@url = http://localhost:5000/tickets-module
+@id = d9921cc0-55cf-427a-85a5-244424fb6063
+
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZmNmZDg1Ny1hY2FmLTQzYWEtYTUyZi1lMjRhNmI2YjgwZmIiLCJ1bmlxdWVfbmFtZSI6IjlmY2ZkODU3LWFjYWYtNDNhYS1hNTJmLWUyNGE2YjZiODBmYiIsImp0aSI6Ijg5ZDE2OWNiLTlmNzQtNGUxOS04MjBhLTRkOTU4N2NhMjMxMCIsImlhdCI6IjE2ODYwNjYzMzk5NDQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwicGVybWlzc2lvbnMiOlsiY29uZmVyZW5jZXMiLCJob3N0cyIsInNwZWFrZXJzIiwidGlja2V0cyIsInVzZXJzIl0sIm5iZiI6MTY4NjA2NjMzOSwiZXhwIjoxNjg2MTAyMzM5LCJpc3MiOiJjb25mYWIifQ.hcFlY-gs43yOSLTbqhCctcSGHrZtUvjEB3oKPrvbC7k
+
+# Tickets - Sales GET ALL
+###
+GET {{url}}/sales/conferences/{{id}}
+Authorization: Bearer {{accessToken}}
+
+# Tickets - Sales GET Current
+###
+GET {{url}}/sales/conferences/{{id}}/current
+Authorization: Bearer {{accessToken}}
+
+# Tickets - Sales POST
+###
+POST {{url}}/sales/conferences/{{id}}
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "Name": "1",
+    "Price": "100",
+    "Amount": "2",
+    "From": "2026-01-07",
+    "To": "2026-01-08"
+}

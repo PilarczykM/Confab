@@ -1,0 +1,5 @@
+@url = http://localhost:5000/attendances-module
+
+# Conferences
+###
+Get {{url}}

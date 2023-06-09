@@ -2,9 +2,12 @@
 
 @conferenceId = "d9921cc0-55cf-427a-85a5-244424fb6063"
 
+# DONT KNOW WHY, BUT DOES NOT WORK HERE.
+# USE POSTMAN INSTEAD
+
 # Agendas - Call for papers get
 ###
-Get {{url}}/conferences/{{conferenceId}}/cfp/
+GET {{url}}/conferences/{{conferenceId}}/cfp 
 
 # Agendas - Call for papers post
 ###
